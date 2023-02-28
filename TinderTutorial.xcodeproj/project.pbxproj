@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
-		8795C87929AE0E60007868B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87829AE0E60007868B3 /* ViewController.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
 		8795C87E29AE0E61007868B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87D29AE0E61007868B3 /* Assets.xcassets */; };
 		8795C88129AE0E61007868B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87F29AE0E61007868B3 /* LaunchScreen.storyboard */; };
+		8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C89229AE0FAA007868B3 /* HomeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8795C87829AE0E60007868B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8795C87B29AE0E60007868B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8795C87D29AE0E61007868B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8795C88029AE0E61007868B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8795C88229AE0E61007868B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8795C89229AE0FAA007868B3 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +56,87 @@
 		8795C87329AE0E60007868B3 /* TinderTutorial */ = {
 			isa = PBXGroup;
 			children = (
-				8795C87429AE0E60007868B3 /* AppDelegate.swift */,
-				8795C87629AE0E60007868B3 /* SceneDelegate.swift */,
-				8795C87829AE0E60007868B3 /* ViewController.swift */,
-				8795C87A29AE0E60007868B3 /* Main.storyboard */,
-				8795C87D29AE0E61007868B3 /* Assets.xcassets */,
-				8795C87F29AE0E61007868B3 /* LaunchScreen.storyboard */,
-				8795C88229AE0E61007868B3 /* Info.plist */,
+				8795C89129AE0ED2007868B3 /* Model */,
+				8795C88F29AE0EC5007868B3 /* View */,
+				8795C88E29AE0EC1007868B3 /* ViewModel */,
+				8795C88D29AE0EBF007868B3 /* Controller */,
+				8795C88A29AE0EB2007868B3 /* API */,
+				8795C88829AE0E9A007868B3 /* Utilities */,
+				8795C89629AE1235007868B3 /* Resoures */,
+				8795C89429AE11DE007868B3 /* App */,
+				8795C89529AE120A007868B3 /* Storyboards */,
 			);
 			path = TinderTutorial;
+			sourceTree = "<group>";
+		};
+		8795C88829AE0E9A007868B3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8795C88A29AE0EB2007868B3 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8795C88D29AE0EBF007868B3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8795C89229AE0FAA007868B3 /* HomeController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8795C88E29AE0EC1007868B3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8795C88F29AE0EC5007868B3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8795C89129AE0ED2007868B3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8795C89429AE11DE007868B3 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8795C87629AE0E60007868B3 /* SceneDelegate.swift */,
+				8795C87429AE0E60007868B3 /* AppDelegate.swift */,
+				8795C88229AE0E61007868B3 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8795C89529AE120A007868B3 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8795C87A29AE0E60007868B3 /* Main.storyboard */,
+				8795C87F29AE0E61007868B3 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		8795C89629AE1235007868B3 /* Resoures */ = {
+			isa = PBXGroup;
+			children = (
+				8795C87D29AE0E61007868B3 /* Assets.xcassets */,
+			);
+			path = Resoures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8795C87929AE0E60007868B3 /* ViewController.swift in Sources */,
 				8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */,
 				8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */,
+				8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +361,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S5QF774VV5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TinderTutorial/Info.plist;
+				INFOPLIST_FILE = TinderTutorial/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +389,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S5QF774VV5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TinderTutorial/Info.plist;
+				INFOPLIST_FILE = TinderTutorial/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
