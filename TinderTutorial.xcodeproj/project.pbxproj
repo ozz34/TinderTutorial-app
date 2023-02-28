@@ -13,6 +13,8 @@
 		8795C87E29AE0E61007868B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87D29AE0E61007868B3 /* Assets.xcassets */; };
 		8795C88129AE0E61007868B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87F29AE0E61007868B3 /* LaunchScreen.storyboard */; };
 		8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C89229AE0FAA007868B3 /* HomeController.swift */; };
+		8795C89829AE1C00007868B3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C89729AE1C00007868B3 /* Extensions.swift */; };
+		8795C89A29AE1D32007868B3 /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		8795C88029AE0E61007868B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8795C88229AE0E61007868B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8795C89229AE0FAA007868B3 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		8795C89729AE1C00007868B3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 		8795C88829AE0E9A007868B3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8795C89729AE1C00007868B3 /* Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 		8795C88F29AE0EC5007868B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,7 +218,9 @@
 			files = (
 				8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */,
 				8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */,
+				8795C89A29AE1D32007868B3 /* HomeNavigationStackView.swift in Sources */,
 				8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */,
+				8795C89829AE1C00007868B3 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
