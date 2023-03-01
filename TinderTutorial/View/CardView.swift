@@ -16,22 +16,19 @@ class CardView: UIView {
     // MARK: - Properties
     private let gradientLayer = CAGradientLayer()
     
+    private var viewModel: CardViewModel
+    
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(named: "jane1")
         
         return iv
     }()
     
-    private let infoLabel: UILabel = {
+    private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        
-        let attributedText = NSMutableAttributedString(string: "Jane Doe",
-                                                       attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy),.foregroundColor: UIColor.white])
-        attributedText.append(NSAttributedString(string: "  20", attributes: [.font: UIFont.systemFont(ofSize: 24),.foregroundColor: UIColor.white]))
-        label.attributedText = attributedText
+        label.attributedText = viewModel.userInfoText
         
         return label
     }()
@@ -45,10 +42,13 @@ class CardView: UIView {
     }()
     
     // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: CardViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         
         configureGestureRecognizers()
+        
+        imageView.image = viewModel.user.images.first
         
         backgroundColor = .systemPurple
         layer.cornerRadius = 10
@@ -72,8 +72,6 @@ class CardView: UIView {
         infoButton.centerY(inView: infoLabel)
         infoButton.anchor(right: rightAnchor,
                          paddingRight: 16)
-        
-       
     }
     
     required init?(coder: NSCoder) {
@@ -83,9 +81,8 @@ class CardView: UIView {
     override func layoutSubviews() {
        gradientLayer.frame = self.frame
     }
-    // MARK: - Actions
-   
     
+    // MARK: - Actions
     @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
@@ -100,7 +97,15 @@ class CardView: UIView {
     }
     
     @objc func handleChangePhoto(sender: UITapGestureRecognizer) {
-
+        let location = sender.location(in: nil).x
+        let shouldNextPhoto = location > self.frame.width / 2
+        
+        if shouldNextPhoto {
+            viewModel.showNextPhoto()
+        } else {
+            viewModel.showPreviousPhoto()
+        }
+        imageView.image = viewModel.imageToShow
     }
     
     // MARK: - Helpers
