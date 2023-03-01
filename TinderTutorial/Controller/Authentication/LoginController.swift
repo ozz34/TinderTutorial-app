@@ -17,40 +17,10 @@ class LoginController: UIViewController {
         return iv
     }()
     
-    private let emailTextField: UITextField = {
-        let tf = UITextField()
-        
-        let spacer = UIView()
-        spacer.setDimensions(height: 50, width: 12)
-        tf.leftView = spacer
-        tf.leftViewMode = .always
-        
-        tf.textColor = .white
-        tf.backgroundColor = UIColor(white: 1, alpha: 0.2)
-        tf.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        tf.layer.cornerRadius = 5
-        tf.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [.foregroundColor: UIColor(white: 1, alpha: 0.7)])
-        
-        return tf
-    }()
-    
-    private let passwordTextField: UITextField = {
-        let tf = UITextField()
-        
-        let spacer = UIView()
-        spacer.setDimensions(height: 50, width: 12)
-        tf.leftView = spacer
-        tf.leftViewMode = .always
-        
-        tf.textColor = .white
-        tf.backgroundColor = UIColor(white: 1, alpha: 0.2)
-        tf.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        tf.layer.cornerRadius = 5
-        tf.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [.foregroundColor: UIColor(white: 1, alpha: 0.7)])
-        
-        return tf
-    }()
-    
+    private let emailTextField = CustomTextField(placeholder: "Email")
+    private let passwordTextField = CustomTextField(placeholder: "Password",
+                                                    isSecureTextEntry: true)
+     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

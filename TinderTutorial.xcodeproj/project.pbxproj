@@ -21,6 +21,7 @@
 		87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */; };
 		87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA029AFBF9C005FC13A /* LoginController.swift */; };
 		87C33AA529AFBFB3005FC13A /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA429AFBFB3005FC13A /* RegistrationController.swift */; };
+		87C33AA729AFCA4D005FC13A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA629AFCA4D005FC13A /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		87C33AA029AFBF9C005FC13A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		87C33AA429AFBFB3005FC13A /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		87C33AA629AFCA4D005FC13A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				8795C89729AE1C00007868B3 /* Extensions.swift */,
+				87C33AA629AFCA4D005FC13A /* CustomTextField.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				8795C89A29AE1D32007868B3 /* HomeNavigationStackView.swift in Sources */,
 				87C33AA529AFBFB3005FC13A /* RegistrationController.swift in Sources */,
 				8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */,
+				87C33AA729AFCA4D005FC13A /* CustomTextField.swift in Sources */,
 				8795C89829AE1C00007868B3 /* Extensions.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
 				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
