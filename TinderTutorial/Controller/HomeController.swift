@@ -33,7 +33,7 @@ class HomeController: UIViewController {
         let cardView2 = CardView()
         
         deckView.addSubview(cardView1)
-        cardView2.fillSuperview()
+        cardView1.fillSuperview()
         deckView.addSubview(cardView2)
         cardView2.fillSuperview()
     }
