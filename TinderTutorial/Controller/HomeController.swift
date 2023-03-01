@@ -24,9 +24,20 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureCards()
     }
     
     // MARK: - Helpers
+    func configureCards() {
+        let cardView1 = CardView()
+        let cardView2 = CardView()
+        
+        deckView.addSubview(cardView1)
+        cardView2.fillSuperview()
+        deckView.addSubview(cardView2)
+        cardView2.fillSuperview()
+    }
+    
     func configureUI() {
         view.backgroundColor = .white
         
