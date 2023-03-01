@@ -19,6 +19,8 @@
 		87C33A9A29AF5C87005FC13A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33A9929AF5C87005FC13A /* CardView.swift */; };
 		87C33A9C29AFA13D005FC13A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33A9B29AFA13D005FC13A /* User.swift */; };
 		87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */; };
+		87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA029AFBF9C005FC13A /* LoginController.swift */; };
+		87C33AA529AFBFB3005FC13A /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA429AFBFB3005FC13A /* RegistrationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		87C33A9929AF5C87005FC13A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		87C33A9B29AFA13D005FC13A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		87C33AA029AFBF9C005FC13A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		87C33AA429AFBFB3005FC13A /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		8795C88D29AE0EBF007868B3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87C33A9F29AFBF7A005FC13A /* Authentication */,
 				8795C89229AE0FAA007868B3 /* HomeController.swift */,
 			);
 			path = Controller;
@@ -155,6 +160,15 @@
 				8795C87D29AE0E61007868B3 /* Assets.xcassets */,
 			);
 			path = Resoures;
+			sourceTree = "<group>";
+		};
+		87C33A9F29AFBF7A005FC13A /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				87C33AA029AFBF9C005FC13A /* LoginController.swift */,
+				87C33AA429AFBFB3005FC13A /* RegistrationController.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,9 +248,11 @@
 				8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */,
 				87C33A9C29AFA13D005FC13A /* User.swift in Sources */,
 				8795C89A29AE1D32007868B3 /* HomeNavigationStackView.swift in Sources */,
+				87C33AA529AFBFB3005FC13A /* RegistrationController.swift in Sources */,
 				8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */,
 				8795C89829AE1C00007868B3 /* Extensions.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
+				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
