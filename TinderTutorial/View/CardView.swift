@@ -16,7 +16,7 @@ class CardView: UIView {
     // MARK: - Properties
     private let gradientLayer = CAGradientLayer()
     
-    private let viewModel: CardViewModel
+    private var viewModel: CardViewModel
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -72,8 +72,6 @@ class CardView: UIView {
         infoButton.centerY(inView: infoLabel)
         infoButton.anchor(right: rightAnchor,
                          paddingRight: 16)
-        
-       
     }
     
     required init?(coder: NSCoder) {
@@ -83,9 +81,8 @@ class CardView: UIView {
     override func layoutSubviews() {
        gradientLayer.frame = self.frame
     }
-    // MARK: - Actions
-   
     
+    // MARK: - Actions
     @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
@@ -100,7 +97,15 @@ class CardView: UIView {
     }
     
     @objc func handleChangePhoto(sender: UITapGestureRecognizer) {
-
+        let location = sender.location(in: nil).x
+        let shouldNextPhoto = location > self.frame.width / 2
+        
+        if shouldNextPhoto {
+            viewModel.showNextPhoto()
+        } else {
+            viewModel.showPreviousPhoto()
+        }
+        imageView.image = viewModel.imageToShow
     }
     
     // MARK: - Helpers
