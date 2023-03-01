@@ -16,10 +16,11 @@ class CardView: UIView {
     // MARK: - Properties
     private let gradientLayer = CAGradientLayer()
     
+    private let viewModel: CardViewModel
+    
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(named: "jane1")
         
         return iv
     }()
@@ -45,10 +46,13 @@ class CardView: UIView {
     }()
     
     // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: CardViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         
         configureGestureRecognizers()
+        
+        imageView.image = viewModel.user.images.first
         
         backgroundColor = .systemPurple
         layer.cornerRadius = 10
