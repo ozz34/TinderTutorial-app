@@ -23,6 +23,7 @@
 		87C33AA529AFBFB3005FC13A /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA429AFBFB3005FC13A /* RegistrationController.swift */; };
 		87C33AA729AFCA4D005FC13A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA629AFCA4D005FC13A /* CustomTextField.swift */; };
 		87C33AA929B08E97005FC13A /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA829B08E97005FC13A /* AuthButton.swift */; };
+		87C33AAB29B0AB76005FC13A /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AAA29B0AB76005FC13A /* AuthenticationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		87C33AA429AFBFB3005FC13A /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		87C33AA629AFCA4D005FC13A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		87C33AA829B08E97005FC13A /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		87C33AAA29B0AB76005FC13A /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */,
+				87C33AAA29B0AB76005FC13A /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			files = (
 				87C33A9A29AF5C87005FC13A /* CardView.swift in Sources */,
 				87C33AA929B08E97005FC13A /* AuthButton.swift in Sources */,
+				87C33AAB29B0AB76005FC13A /* AuthenticationViewModel.swift in Sources */,
 				8795C89C29AE2BF3007868B3 /* BottomControlsStackView.swift in Sources */,
 				8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */,
 				8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */,
