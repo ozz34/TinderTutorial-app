@@ -40,7 +40,7 @@ class LoginController: UIViewController {
                                                                .font: UIFont.boldSystemFont(ofSize: 16)]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self,
-                         action: #selector(handleRegistration),
+                         action: #selector(handleShowRegistration),
                          for: .touchUpInside)
         
         return button
@@ -54,10 +54,10 @@ class LoginController: UIViewController {
     
     // MARK: - Actions
     @objc func handleLogin() {
-        
+       
     }
     
-    @objc func handleRegistration() {
+    @objc func handleShowRegistration() {
         let controller = RegistrationController()
         navigationController?.pushViewController(controller, animated: true)
     }
