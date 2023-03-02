@@ -50,7 +50,6 @@ class RegistrationController: UIViewController {
         
         return button
     }()
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +58,10 @@ class RegistrationController: UIViewController {
     
     // MARK: - Actions
     @objc func handleSelectPhoto() {
-        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true)
     }
     
     @objc func handleRegisterUser() {
@@ -102,5 +104,19 @@ class RegistrationController: UIViewController {
                                right: view.rightAnchor,
                                paddingLeft: 32,
                                paddingRight: 32)
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension RegistrationController: UIImagePickerControllerDelegate,
+                                  UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else { return }
+        selectPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        selectPhotoButton.layer.cornerRadius = 10
+        selectPhotoButton.imageView?.contentMode = .scaleAspectFill
+        selectPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
+        selectPhotoButton.layer.borderWidth = 3
+        dismiss(animated: true)
     }
 }
