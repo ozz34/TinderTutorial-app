@@ -22,6 +22,7 @@
 		87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA029AFBF9C005FC13A /* LoginController.swift */; };
 		87C33AA529AFBFB3005FC13A /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA429AFBFB3005FC13A /* RegistrationController.swift */; };
 		87C33AA729AFCA4D005FC13A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA629AFCA4D005FC13A /* CustomTextField.swift */; };
+		87C33AA929B08E97005FC13A /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33AA829B08E97005FC13A /* AuthButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		87C33AA029AFBF9C005FC13A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		87C33AA429AFBFB3005FC13A /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		87C33AA629AFCA4D005FC13A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		87C33AA829B08E97005FC13A /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				8795C89729AE1C00007868B3 /* Extensions.swift */,
 				87C33AA629AFCA4D005FC13A /* CustomTextField.swift */,
+				87C33AA829B08E97005FC13A /* AuthButton.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87C33A9A29AF5C87005FC13A /* CardView.swift in Sources */,
+				87C33AA929B08E97005FC13A /* AuthButton.swift in Sources */,
 				8795C89C29AE2BF3007868B3 /* BottomControlsStackView.swift in Sources */,
 				8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */,
 				8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */,

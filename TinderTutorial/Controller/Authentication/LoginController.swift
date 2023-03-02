@@ -20,11 +20,46 @@ class LoginController: UIViewController {
     private let emailTextField = CustomTextField(placeholder: "Email")
     private let passwordTextField = CustomTextField(placeholder: "Password",
                                                     isSecureTextEntry: true)
+    
+    private lazy var authButton = {
+        let button = AuthButton(title: "Log In", type: .system)
+        button.addTarget(self,
+                         action: #selector(handleLogin),
+                         for: .touchUpInside)
+        
+        return button
+    }()
      
+    private lazy var goToRegistrationButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account? ",
+                                                        attributes: [.foregroundColor: UIColor.white,
+                                                                     .font: UIFont.systemFont(ofSize: 16)])
+        attributedTitle.append(NSAttributedString(string: "Sigh Up",
+                                                  attributes: [.foregroundColor: UIColor.white,
+                                                               .font: UIFont.boldSystemFont(ofSize: 16)]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self,
+                         action: #selector(handleRegistration),
+                         for: .touchUpInside)
+        
+        return button
+    }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+    }
+    
+    // MARK: - Actions
+    @objc func handleLogin() {
+        
+    }
+    
+    @objc func handleRegistration() {
+        let controller = RegistrationController()
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     // MARK: - Helpers
@@ -40,7 +75,8 @@ class LoginController: UIViewController {
         iconImageView.setDimensions(height: 100, width: 100)
         
         let stack = UIStackView(arrangedSubviews: [emailTextField,
-                                                  passwordTextField])
+                                                  passwordTextField,
+                                                  authButton])
         stack.axis = .vertical
         stack.spacing = 16
         
@@ -51,5 +87,13 @@ class LoginController: UIViewController {
                      paddingTop: 24,
                      paddingLeft: 32,
                      paddingRight: 32)
+        
+        view.addSubview(goToRegistrationButton)
+        goToRegistrationButton.anchor(left: view.leftAnchor,
+                                      bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                                      right: view.rightAnchor,
+                                      paddingLeft: 32,
+                                      paddingRight: 32)
     }
 }
+                                      
