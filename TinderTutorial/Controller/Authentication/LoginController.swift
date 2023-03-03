@@ -58,7 +58,14 @@ class LoginController: UIViewController {
     
     // MARK: - Actions
     @objc func handleLogin() {
-
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        AuthService.logUserIn(withEmail: email, password: password) { (result, error) in
+            if let error {
+                print("Debug: Error logging user in \(error.localizedDescription)")
+            }
+            self.dismiss(animated: true)
+        }
     }
     
     @objc func handleShowRegistration() {
