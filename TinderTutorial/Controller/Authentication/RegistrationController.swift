@@ -82,7 +82,7 @@ class RegistrationController: UIViewController {
             if let error {
                 print("Debug: Error signing user up \(error.localizedDescription)")
             }
-            print("Debug: success")
+            self.dismiss(animated: true)
         }
     }
     
