@@ -24,14 +24,14 @@ struct CardViewModel {
     }
     
     mutating func showNextPhoto() {
-        guard imageIndex < user.images.count - 1 else { return }
-        imageIndex += 1
-        imageToShow = user.images[imageIndex]
+//        guard imageIndex < user.images.count - 1 else { return }
+//        imageIndex += 1
+//        imageToShow = user.images[imageIndex]
     }
     
     mutating func showPreviousPhoto() {
-        guard imageIndex > 0 else { return }
-        imageIndex -= 1
-        self.imageToShow = user.images[imageIndex]
+//        guard imageIndex > 0 else { return }
+//        imageIndex -= 1
+//        self.imageToShow = user.images[imageIndex]
     }
 }
