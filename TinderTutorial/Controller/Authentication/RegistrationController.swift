@@ -28,6 +28,7 @@ class RegistrationController: UIViewController {
     private let fullNameTextField = CustomTextField(placeholder: "Full Name")
     private let passwordTextField = CustomTextField(placeholder: "Password",
                                                     isSecureTextEntry: true)
+    private var profileImage: UIImage?
     
     private lazy var authButton = {
         let button = AuthButton(title: "Sigh Up", type: .system)
@@ -69,7 +70,20 @@ class RegistrationController: UIViewController {
     }
     
     @objc func handleRegisterUser() {
-
+        guard let email = emailTextField.text else { return }
+        guard let fullName = fullNameTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let profileImage = profileImage else { return }
+        let authCredential = AuthCredentials(email: email,
+                                             fullName: fullName,
+                                             password: password,
+                                             profileImage: profileImage)
+        AuthService.registerUser(withCredentials: authCredential) { error in
+            if let error {
+                print("Debug: Error signing user up \(error.localizedDescription)")
+            }
+            print("Debug: success")
+        }
     }
     
     @objc func handleShowLogin() {
@@ -149,6 +163,7 @@ extension RegistrationController: UIImagePickerControllerDelegate,
                                   UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
+        profileImage = image
         selectPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         selectPhotoButton.layer.cornerRadius = 10
         selectPhotoButton.imageView?.contentMode = .scaleAspectFill

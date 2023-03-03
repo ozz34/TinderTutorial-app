@@ -55,6 +55,8 @@
 		87D1C18629B0DDD200AC6810 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 87D1C18529B0DDD200AC6810 /* SDWebImage */; };
 		87D1C18829B0DDD200AC6810 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 87D1C18729B0DDD200AC6810 /* SDWebImageMapKit */; };
 		87D1C18B29B0DE1D00AC6810 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 87D1C18A29B0DE1D00AC6810 /* JGProgressHUD */; };
+		87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C18C29B1C9A500AC6810 /* AuthService.swift */; };
+		87D1C18F29B1C9B600AC6810 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C18E29B1C9B600AC6810 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		87C33AA829B08E97005FC13A /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		87C33AAA29B0AB76005FC13A /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		87C33AAC29B0D0AB005FC13A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		87D1C18C29B1C9A500AC6810 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		87D1C18E29B1C9B600AC6810 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,8 @@
 		8795C88A29AE0EB2007868B3 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				87D1C18C29B1C9A500AC6810 /* AuthService.swift */,
+				87D1C18E29B1C9B600AC6810 /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -361,9 +367,11 @@
 				87C33A9C29AFA13D005FC13A /* User.swift in Sources */,
 				8795C89A29AE1D32007868B3 /* HomeNavigationStackView.swift in Sources */,
 				87C33AA529AFBFB3005FC13A /* RegistrationController.swift in Sources */,
+				87D1C18F29B1C9B600AC6810 /* Service.swift in Sources */,
 				8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */,
 				87C33AA729AFCA4D005FC13A /* CustomTextField.swift in Sources */,
 				8795C89829AE1C00007868B3 /* Extensions.swift in Sources */,
+				87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
 				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
 			);
