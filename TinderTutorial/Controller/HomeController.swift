@@ -13,6 +13,12 @@ class HomeController: UIViewController {
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
     
+    private var viewModels = [CardViewModel]() {
+        didSet {
+            configureCards()
+        }
+    }
+    
     private let deckView: UIView = {
        let view = UIView()
         view.backgroundColor = .systemPink
@@ -25,7 +31,6 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        configureCards()
         checkIsUserIsLoggedIn()
         fetchUser()
         fetchUsers()
@@ -41,7 +46,9 @@ class HomeController: UIViewController {
     
     func fetchUsers() {
         Service.fetchUsers { users in
-            print(users)
+            self.viewModels = users.map {
+                CardViewModel(user: $0)
+            }
         }
     }
     
@@ -49,7 +56,7 @@ class HomeController: UIViewController {
         if Auth.auth().currentUser == nil {
             presentLoginController()
         } else {
-            print("Yes")
+
         }
     }
     
@@ -64,18 +71,11 @@ class HomeController: UIViewController {
     
     // MARK: - Helpers
     func configureCards() {
-//        let user1 = User(name: "Jane Doe", age: 22, images: [#imageLiteral(resourceName: "jane1"), #imageLiteral(resourceName: "jane2")])
-//        let user2 = User(name: "Megan", age: 21, images: [#imageLiteral(resourceName: "kelly3"), #imageLiteral(resourceName: "kelly1")])
-//        let viewModel1 = CardViewModel(user: user1)
-//        let viewModel2 = CardViewModel(user: user2)
-//
-//        let cardView1 = CardView(viewModel: viewModel1)
-//        let cardView2 = CardView(viewModel: viewModel2)
-//
-//        deckView.addSubview(cardView1)
-//        cardView1.fillSuperview()
-//        deckView.addSubview(cardView2)
-//        cardView2.fillSuperview()
+        viewModels.forEach { viewModel in
+            let cardView = CardView(viewModel: viewModel)
+            deckView.addSubview(cardView)
+            cardView.fillSuperview()
+        }
     }
     
     func configureUI() {
