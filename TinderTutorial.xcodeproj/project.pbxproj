@@ -58,6 +58,7 @@
 		87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C18C29B1C9A500AC6810 /* AuthService.swift */; };
 		87D1C18F29B1C9B600AC6810 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C18E29B1C9B600AC6810 /* Service.swift */; };
 		87D1C1B129B2739F00AC6810 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B029B2739F00AC6810 /* Constants.swift */; };
+		87D1C1B329B48C5300AC6810 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B229B48C5300AC6810 /* SettingsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		87D1C18C29B1C9A500AC6810 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		87D1C18E29B1C9B600AC6810 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		87D1C1B029B2739F00AC6810 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		87D1C1B229B48C5300AC6810 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			children = (
 				87C33A9F29AFBF7A005FC13A /* Authentication */,
 				8795C89229AE0FAA007868B3 /* HomeController.swift */,
+				87D1C1B229B48C5300AC6810 /* SettingsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87D1C1B329B48C5300AC6810 /* SettingsController.swift in Sources */,
 				87C33A9A29AF5C87005FC13A /* CardView.swift in Sources */,
 				87D1C1B129B2739F00AC6810 /* Constants.swift in Sources */,
 				87C33AA929B08E97005FC13A /* AuthButton.swift in Sources */,
