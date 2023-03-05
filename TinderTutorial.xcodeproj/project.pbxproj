@@ -59,6 +59,7 @@
 		87D1C18F29B1C9B600AC6810 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C18E29B1C9B600AC6810 /* Service.swift */; };
 		87D1C1B129B2739F00AC6810 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B029B2739F00AC6810 /* Constants.swift */; };
 		87D1C1B329B48C5300AC6810 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B229B48C5300AC6810 /* SettingsController.swift */; };
+		87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B429B4906600AC6810 /* SettingsHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		87D1C18E29B1C9B600AC6810 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		87D1C1B029B2739F00AC6810 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		87D1C1B229B48C5300AC6810 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		87D1C1B429B4906600AC6810 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */,
 				8795C89B29AE2BF3007868B3 /* BottomControlsStackView.swift */,
 				87C33A9929AF5C87005FC13A /* CardView.swift */,
+				87D1C1B429B4906600AC6810 /* SettingsHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */,
 				87C33AA729AFCA4D005FC13A /* CustomTextField.swift in Sources */,
 				8795C89829AE1C00007868B3 /* Extensions.swift in Sources */,
+				87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */,
 				87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
 				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
