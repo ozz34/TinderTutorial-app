@@ -108,6 +108,7 @@ class HomeController: UIViewController {
     }
 }
 
+// MARK: - HomeNavigationStackViewDelegate
 extension HomeController: HomeNavigationStackViewDelegate {
     func showSettings() {
         let controller = SettingsController()
