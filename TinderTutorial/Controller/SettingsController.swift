@@ -46,6 +46,7 @@ class SettingsController: UITableViewController {
         tableView.separatorStyle = .none
         
         tableView.tableHeaderView = headerView
+        tableView.backgroundColor = .systemGroupedBackground
         headerView.delegate = self
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)
     }
@@ -79,7 +80,7 @@ extension SettingsController {
         SettingsSections.allCases.count
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,6 +94,12 @@ extension SettingsController {
 extension SettingsController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         32
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let section = SettingsSections(rawValue: indexPath.section) else { return 0 }
+        
+        return section == .ageRange ? 96 : 44
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
