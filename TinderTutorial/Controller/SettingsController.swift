@@ -13,6 +13,8 @@ class SettingsController: UITableViewController {
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
+    private let identifier = "SettingsCell"
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,8 @@ class SettingsController: UITableViewController {
     
     // MARK: - Helpers
     func configureUI() {
+        tableView.register(SettingsCell.self, forCellReuseIdentifier: identifier)
+        
         imagePicker.delegate = self
         
         navigationItem.title = "Settings"
@@ -66,5 +70,34 @@ extension SettingsController: UIImagePickerControllerDelegate, UINavigationContr
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
         setHeaderImage(selectedImage)
         dismiss(animated: true)
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension SettingsController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        SettingsSections.allCases.count
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        2
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? SettingsCell else { return UITableViewCell() }
+        
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension SettingsController {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        32
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let section = SettingsSections(rawValue: section) else { return nil }
+        
+        return section.description
     }
 }
