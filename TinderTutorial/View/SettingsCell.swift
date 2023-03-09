@@ -9,6 +9,12 @@ import UIKit
 
 class SettingsCell: UITableViewCell {
     // MARK: - Properties
+    var viewModel: SettingsViewModel! {
+        didSet {
+            configureUI()
+        }
+    }
+    
     lazy var inputField: UITextField = {
        let tf = UITextField()
         tf.borderStyle = .none
@@ -23,6 +29,8 @@ class SettingsCell: UITableViewCell {
         return tf
     }()
     
+    var sliderStack = UIStackView()
+    
     let minAgeLabel = UILabel()
     let maxAgeLabel = UILabel()
     
@@ -33,8 +41,31 @@ class SettingsCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        minAgeLabel.text = "Min: 18"
+        maxAgeLabel.text = "Max: 60"
+        
         addSubview(inputField)
         inputField.fillSuperview()
+        
+        let minStack = UIStackView(arrangedSubviews: [minAgeLabel,
+                                                     minAgeSlider])
+        minStack.spacing = 24
+        
+        let maxStack = UIStackView(arrangedSubviews: [maxAgeLabel,
+                                                     maxAgeSlider])
+        maxStack.spacing = 24
+        
+        sliderStack = UIStackView(arrangedSubviews: [minStack,
+                                                         maxStack])
+        sliderStack.axis = .vertical
+        sliderStack.spacing = 16
+        
+        addSubview(sliderStack)
+        sliderStack.centerX(inView: self)
+        sliderStack.anchor(left: leftAnchor,
+                           right: rightAnchor,
+                           paddingLeft: 24,
+                           paddingRight: 24)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -55,5 +86,10 @@ class SettingsCell: UITableViewCell {
                          action: #selector(handleAgeRangeChanged),
                          for: .valueChanged)
         return slider
+    }
+    
+    func configureUI() {
+        inputField.isHidden = viewModel.shouldHideInputField
+        sliderStack.isHidden = viewModel.shouldHideSlider
     }
 }

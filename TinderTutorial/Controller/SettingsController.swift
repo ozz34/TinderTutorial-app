@@ -13,9 +13,20 @@ class SettingsController: UITableViewController {
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
+    private let user: User
+    
     private let identifier = "SettingsCell"
     
     // MARK: - Lifecycle
+    init(user: User) {
+        self.user = user
+        super.init(style: .plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -85,6 +96,9 @@ extension SettingsController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? SettingsCell else { return UITableViewCell() }
+        guard let section = SettingsSections(rawValue: indexPath.section) else { return cell }
+        let viewModel = SettingsViewModel(user: user, section: section)
+        cell.viewModel = viewModel
         
         return cell
     }
