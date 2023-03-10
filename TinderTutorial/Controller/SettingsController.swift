@@ -134,6 +134,14 @@ extension SettingsController {
 
 // MARK: - SettingsCellDelegate
 extension SettingsController: SettingsCellDelegate {
+    func settingsCell(_ cell: SettingsCell, wantsToUpdateAgeRangeWith sender: UISlider) {
+        if sender == cell.minAgeSlider {
+            user.minSeekingAge = Int(sender.value)
+        } else {
+            user.maxSeekingAge = Int(sender.value)
+        }
+    }
+
     func settingsCell(_ cell: SettingsCell,
                       wantsToUpdateUserWith value: String,
                       forSection section: SettingsSections) {
