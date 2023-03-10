@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 enum SwipeDirection: Int {
     case left = -1
@@ -16,6 +15,8 @@ enum SwipeDirection: Int {
 class CardView: UIView {
     // MARK: - Properties
     private let gradientLayer = CAGradientLayer()
+    
+    private let barStackView = UIStackView()
     
     private var viewModel: CardViewModel
     
@@ -51,13 +52,12 @@ class CardView: UIView {
     
         imageView.sd_setImage(with: viewModel.imageUrl)
         
-        backgroundColor = .systemPurple
         layer.cornerRadius = 10
         clipsToBounds = true
         
         addSubview(imageView)
         imageView.fillSuperview()
-        
+        configureBarStackView()
         configureGradientLayer()
         
         addSubview(infoLabel)
@@ -100,13 +100,16 @@ class CardView: UIView {
     @objc func handleChangePhoto(sender: UITapGestureRecognizer) {
         let location = sender.location(in: nil).x
         let shouldNextPhoto = location > self.frame.width / 2
-        
         if shouldNextPhoto {
             viewModel.showNextPhoto()
         } else {
             viewModel.showPreviousPhoto()
         }
 //        imageView.image = viewModel.imageToShow
+        imageView.sd_setImage(with: viewModel.imageUrl)
+        
+        barStackView.arrangedSubviews.forEach { $0.backgroundColor = .barDeselectedColor }
+        barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
     }
     
     // MARK: - Helpers
@@ -154,5 +157,24 @@ class CardView: UIView {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleChangePhoto))
         addGestureRecognizer(tap)
+    }
+    
+    func configureBarStackView() {
+        (0..<viewModel.imageURLs.count).forEach { _ in
+            let barView = UIView()
+            barView.backgroundColor = .barDeselectedColor
+            barStackView.addArrangedSubview(barView)
+        }
+        barStackView.arrangedSubviews.first?.backgroundColor = .white
+        addSubview(barStackView)
+        barStackView.anchor(top: topAnchor,
+                            left: leftAnchor,
+                            right: rightAnchor,
+                            paddingTop: 8,
+                            paddingLeft: 8,
+                            paddingRight: 8,
+                            height: 4)
+        barStackView.spacing = 4
+        barStackView.distribution = .fillEqually
     }
 }
