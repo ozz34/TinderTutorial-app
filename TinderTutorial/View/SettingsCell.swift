@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol SettingsCellDelegate: AnyObject {
+    func settingsCell(_ cell: SettingsCell,
+                      wantsToUpdateUserWith value: String,
+                      forSection section: SettingsSections)
+}
+
 class SettingsCell: UITableViewCell {
     // MARK: - Properties
     var viewModel: SettingsViewModel! {
@@ -15,15 +21,21 @@ class SettingsCell: UITableViewCell {
         }
     }
     
+    weak var delegate: SettingsCellDelegate?
+    
     lazy var inputField: UITextField = {
-       let tf = UITextField()
+        let tf = UITextField()
         tf.borderStyle = .none
         tf.font = UIFont.systemFont(ofSize: 16)
         
         let paddingView = UIView()
+        paddingView.setDimensions(height: 50, width: 28)
         tf.leftView = paddingView
         tf.leftViewMode = .always
-        paddingView.setDimensions(height: 50, width: 28)
+       
+        tf.addTarget(self,
+                     action: #selector(handleUpdateUserInfo),
+                     for: .editingDidEnd)
         
         return tf
     }()
@@ -40,11 +52,11 @@ class SettingsCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        contentView.addSubview(inputField)
+        inputField.fillSuperview()
+        
         minAgeLabel.text = "Min: 18"
         maxAgeLabel.text = "Max: 60"
-        
-        addSubview(inputField)
-        inputField.fillSuperview()
         
         let minStack = UIStackView(arrangedSubviews: [minAgeLabel,
                                                      minAgeSlider])
@@ -59,7 +71,7 @@ class SettingsCell: UITableViewCell {
         sliderStack.axis = .vertical
         sliderStack.spacing = 16
         
-        addSubview(sliderStack)
+        contentView.addSubview(sliderStack)
         sliderStack.centerX(inView: self)
         sliderStack.anchor(left: leftAnchor,
                            right: rightAnchor,
@@ -72,7 +84,14 @@ class SettingsCell: UITableViewCell {
     
     //MARK: - Actions
     @objc func handleAgeRangeChanged() {
-        
+       
+    }
+    
+    @objc func handleUpdateUserInfo(sender: UITextField) {
+        guard let value = sender.text else { return }
+        delegate?.settingsCell(self,
+                               wantsToUpdateUserWith: value,
+                               forSection: viewModel.section)
     }
     
     //MARK: - Helpers
@@ -94,4 +113,4 @@ class SettingsCell: UITableViewCell {
         inputField.placeholder = viewModel.placeholderText
         inputField.text = viewModel.value
     }
-}    
+}

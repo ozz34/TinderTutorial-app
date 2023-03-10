@@ -7,15 +7,22 @@
 
 import UIKit
 
+protocol SettingsControllerDelegate: AnyObject {
+    func settingsController(_ controller: SettingsController,
+                            wantsToUpdate user: User)
+}
+
 class SettingsController: UITableViewController {
     // MARK: - Properties
     private let headerView = SettingsHeader()
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
-    private let user: User
+    private var user: User
     
     private let identifier = "SettingsCell"
+    
+    weak var delegate: SettingsControllerDelegate?
     
     // MARK: - Lifecycle
     init(user: User) {
@@ -39,7 +46,8 @@ class SettingsController: UITableViewController {
     }
     
     @objc func handleDone() {
-        print("done")
+        view.endEditing(true)
+        delegate?.settingsController(self, wantsToUpdate: user)
     }
     
     // MARK: - Helpers
@@ -99,6 +107,7 @@ extension SettingsController {
         guard let section = SettingsSections(rawValue: indexPath.section) else { return cell }
         let viewModel = SettingsViewModel(user: user, section: section)
         cell.viewModel = viewModel
+        cell.delegate = self
         
         return cell
     }
@@ -120,5 +129,26 @@ extension SettingsController {
         guard let section = SettingsSections(rawValue: section) else { return nil }
         
         return section.description
+    }
+}
+
+// MARK: - SettingsCellDelegate
+extension SettingsController: SettingsCellDelegate {
+    func settingsCell(_ cell: SettingsCell,
+                      wantsToUpdateUserWith value: String,
+                      forSection section: SettingsSections) {
+
+        switch section {
+        case .name:
+            user.name = value
+        case .profession:
+            user.profession = value
+        case .age:
+            user.age = Int(value) ?? 0
+        case .bio:
+            user.bio = value
+        case .ageRange:
+            break
+        }
     }
 }

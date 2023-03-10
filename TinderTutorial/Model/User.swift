@@ -13,7 +13,7 @@ struct User {
     var email: String
     let profileImageUrl: String
     let uid: String
-    let profession: String
+    var profession: String
     var minSeekingAge: Int
     var maxSeekingAge: Int
     var bio: String
