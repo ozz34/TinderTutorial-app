@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CardViewDelegate: AnyObject {
+    func cardView(_ view: CardView, wantsToShowProfileFor user: User)
+}
+
 enum SwipeDirection: Int {
     case left = -1
     case right = 1
@@ -14,6 +18,8 @@ enum SwipeDirection: Int {
 
 class CardView: UIView {
     // MARK: - Properties
+    weak var delegate: CardViewDelegate?
+    
     private let gradientLayer = CAGradientLayer()
     
     private let barStackView = UIStackView()
@@ -39,7 +45,10 @@ class CardView: UIView {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "info_icon")?.withRenderingMode(.alwaysOriginal),
                         for: .normal)
-
+        button.addTarget(self,
+                         action: #selector(handleShowProfile),
+                         for: .touchUpInside)
+        
         return button
     }()
     
@@ -49,7 +58,7 @@ class CardView: UIView {
         super.init(frame: .zero)
         
         configureGestureRecognizers()
-    
+        
         imageView.sd_setImage(with: viewModel.imageUrl)
         
         layer.cornerRadius = 10
@@ -72,7 +81,7 @@ class CardView: UIView {
         infoButton.setDimensions(height: 40, width: 40)
         infoButton.centerY(inView: infoLabel)
         infoButton.anchor(right: rightAnchor,
-                         paddingRight: 16)
+                          paddingRight: 16)
     }
     
     required init?(coder: NSCoder) {
@@ -80,7 +89,7 @@ class CardView: UIView {
     }
     
     override func layoutSubviews() {
-       gradientLayer.frame = self.frame
+        gradientLayer.frame = self.frame
     }
     
     // MARK: - Actions
@@ -105,11 +114,15 @@ class CardView: UIView {
         } else {
             viewModel.showPreviousPhoto()
         }
-//        imageView.image = viewModel.imageToShow
+        //        imageView.image = viewModel.imageToShow
         imageView.sd_setImage(with: viewModel.imageUrl)
         
         barStackView.arrangedSubviews.forEach { $0.backgroundColor = .barDeselectedColor }
         barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
+    }
+    
+    @objc func handleShowProfile() {
+        delegate?.cardView(self, wantsToShowProfileFor: viewModel.user)
     }
     
     // MARK: - Helpers
