@@ -11,6 +11,7 @@ import JGProgressHUD
 protocol SettingsControllerDelegate: AnyObject {
     func settingsController(_ controller: SettingsController,
                             wantsToUpdate user: User)
+    func settingsControllerWantsToLogout(_ controller: SettingsController)
 }
 
 class SettingsController: UITableViewController {
@@ -18,6 +19,7 @@ class SettingsController: UITableViewController {
     private var user: User
     
     private lazy var headerView = SettingsHeader(user: user)
+    private let footerView = SettingsFooter()
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
@@ -81,11 +83,15 @@ class SettingsController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(handleDone))
         
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .systemGroupedBackground
         
         tableView.tableHeaderView = headerView
-        tableView.backgroundColor = .systemGroupedBackground
-        headerView.delegate = self
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)
+        headerView.delegate = self
+        
+        tableView.tableFooterView = footerView
+        footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 88)
+        footerView.delegate = self
     }
     
     func setHeaderImage(_ image: UIImage) {
@@ -178,5 +184,11 @@ extension SettingsController: SettingsCellDelegate {
         case .ageRange:
             break
         }
+    }
+}
+
+extension SettingsController: SettingsFooterDelegate {
+    func handleLogout() {
+        delegate?.settingsControllerWantsToLogout(self)
     }
 }
