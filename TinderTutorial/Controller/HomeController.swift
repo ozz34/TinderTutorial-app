@@ -10,6 +10,8 @@ import Firebase
 
 class HomeController: UIViewController {
     // MARK: - Properties
+    private var user: User?
+    
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
     
@@ -34,13 +36,13 @@ class HomeController: UIViewController {
         checkIsUserIsLoggedIn()
         fetchUser()
         fetchUsers()
-        //logout()
     }
     
     // MARK: - API
     func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
+            self.user = user
         }
     }
     
@@ -81,6 +83,8 @@ class HomeController: UIViewController {
     func configureUI() {
         view.backgroundColor = .white
         
+        topStack.delegate = self
+        
         let stack = UIStackView(arrangedSubviews: [topStack,
                                                    deckView,
                                                    bottomStack])
@@ -103,5 +107,33 @@ class HomeController: UIViewController {
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
         }
+    }
+}
+
+// MARK: - HomeNavigationStackViewDelegate
+extension HomeController: HomeNavigationStackViewDelegate {
+    func showSettings() {
+        guard let user = self.user else { return }
+        let controller = SettingsController(user: user)
+        controller.delegate = self
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+    }
+    
+    func showMessages() {
+        print("message")
+    }
+}
+// MARK: - SettingsControllerDelegate
+extension HomeController: SettingsControllerDelegate {
+    func settingsControllerWantsToLogout(_ controller: SettingsController) {
+        controller.dismiss(animated: true)
+        logout()
+    }
+    
+    func settingsController(_ controller: SettingsController, wantsToUpdate user: User) {
+        controller.dismiss(animated: true)
+        self.user = user
     }
 }
