@@ -19,7 +19,6 @@ class SettingsCell: UITableViewCell {
        let tf = UITextField()
         tf.borderStyle = .none
         tf.font = UIFont.systemFont(ofSize: 16)
-        tf.placeholder = "Enter value here..."
         
         let paddingView = UIView()
         tf.leftView = paddingView
@@ -91,5 +90,8 @@ class SettingsCell: UITableViewCell {
     func configureUI() {
         inputField.isHidden = viewModel.shouldHideInputField
         sliderStack.isHidden = viewModel.shouldHideSlider
+        
+        inputField.placeholder = viewModel.placeholderText
+        inputField.text = viewModel.value
     }
-}
+}    
