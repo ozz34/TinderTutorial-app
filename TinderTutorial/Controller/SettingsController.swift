@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 protocol SettingsControllerDelegate: AnyObject {
     func settingsController(_ controller: SettingsController,
@@ -47,7 +48,24 @@ class SettingsController: UITableViewController {
     
     @objc func handleDone() {
         view.endEditing(true)
-        delegate?.settingsController(self, wantsToUpdate: user)
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Saving Your Data"
+        hud.show(in: view)
+        Service.saveUserData(user: user) { error in
+            self.delegate?.settingsController(self, wantsToUpdate: self.user)
+        }
+    }
+    
+    // MARK: - API
+    func uploadImage(image: UIImage) {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Saving Image"
+        hud.show(in: view)
+        
+        Service.uploadImage(image: image) { imageUrl in
+            self.user.imageURLs.append(imageUrl)
+            hud.dismiss()
+        }
     }
     
     // MARK: - Helpers
@@ -88,6 +106,8 @@ extension SettingsController: SettingsHeaderDelegate {
 extension SettingsController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
+        
+        uploadImage(image: selectedImage)
         setHeaderImage(selectedImage)
         dismiss(animated: true)
     }
