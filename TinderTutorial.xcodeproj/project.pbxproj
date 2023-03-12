@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87136F5429BE1DD400EDD326 /* SegmentedBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */; };
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedBarView.swift; sourceTree = "<group>"; };
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				8795C89B29AE2BF3007868B3 /* BottomControlsStackView.swift */,
 				87C33A9929AF5C87005FC13A /* CardView.swift */,
 				87E9484729BB975A00A72742 /* ProfileCell.swift */,
+				87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87D1C1B329B48C5300AC6810 /* SettingsController.swift in Sources */,
+				87136F5429BE1DD400EDD326 /* SegmentedBarView.swift in Sources */,
 				87C33A9A29AF5C87005FC13A /* CardView.swift in Sources */,
 				87D1C1B129B2739F00AC6810 /* Constants.swift in Sources */,
 				87C33AA929B08E97005FC13A /* AuthButton.swift in Sources */,

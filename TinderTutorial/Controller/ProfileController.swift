@@ -12,7 +12,8 @@ class ProfileController: UIViewController {
     private let user: User
     private let identifier = "ProfileCell"
     private lazy var viewModel = ProfileViewModel(user: user)
-    
+    private lazy var barStackView = SegmentedBarView(numberOfSegments: viewModel.imageURLs.count)
+
     private lazy var collectionView: UICollectionView = {
         let frame = CGRect(x: 0,
                            y: 0,
@@ -28,6 +29,12 @@ class ProfileController: UIViewController {
         cv.register(ProfileCell.self, forCellWithReuseIdentifier: identifier)
         
         return cv
+    }()
+    
+    private let blurView: UIVisualEffectView = {
+        let blur = UIBlurEffect(style: .regular)
+        let view = UIVisualEffectView(effect: blur)
+        return view
     }()
     
     private lazy var dismissButton: UIButton = {
@@ -140,7 +147,25 @@ class ProfileController: UIViewController {
                          paddingTop: 12,
                          paddingLeft: 12,
                          paddingRight: 12)
+        view.addSubview(blurView)
+        blurView.anchor(top: view.topAnchor,
+                         left: view.leftAnchor,
+                        bottom: view.safeAreaLayoutGuide.topAnchor,
+                         right: view.rightAnchor)
+        
         configureBottomControls()
+        configureBarStackView()
+    }
+   
+    func configureBarStackView() {
+        view.addSubview(barStackView)
+        barStackView.anchor(top: view.topAnchor,
+                            left: view.leftAnchor,
+                            right: view.rightAnchor,
+                            paddingTop: 56,
+                            paddingLeft: 8,
+                            paddingRight: 8,
+                            height: 4)
     }
     
     func configureBottomControls() {
@@ -185,7 +210,9 @@ extension ProfileController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension ProfileController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        barStackView.setHighlighted(index: indexPath.row)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

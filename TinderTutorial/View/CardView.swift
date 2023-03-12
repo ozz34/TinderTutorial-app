@@ -22,7 +22,7 @@ class CardView: UIView {
     
     private let gradientLayer = CAGradientLayer()
     
-    private let barStackView = UIStackView()
+    private lazy var barStackView = SegmentedBarView(numberOfSegments: viewModel.imageURLs.count)
     
     private var viewModel: CardViewModel
     
@@ -117,8 +117,7 @@ class CardView: UIView {
         //        imageView.image = viewModel.imageToShow
         imageView.sd_setImage(with: viewModel.imageUrl)
         
-        barStackView.arrangedSubviews.forEach { $0.backgroundColor = .barDeselectedColor }
-        barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
+        barStackView.setHighlighted(index: viewModel.index)
     }
     
     @objc func handleShowProfile() {
@@ -173,12 +172,6 @@ class CardView: UIView {
     }
     
     func configureBarStackView() {
-        (0..<viewModel.imageURLs.count).forEach { _ in
-            let barView = UIView()
-            barView.backgroundColor = .barDeselectedColor
-            barStackView.addArrangedSubview(barView)
-        }
-        barStackView.arrangedSubviews.first?.backgroundColor = .white
         addSubview(barStackView)
         barStackView.anchor(top: topAnchor,
                             left: leftAnchor,
@@ -187,7 +180,5 @@ class CardView: UIView {
                             paddingLeft: 8,
                             paddingRight: 8,
                             height: 4)
-        barStackView.spacing = 4
-        barStackView.distribution = .fillEqually
     }
 }
