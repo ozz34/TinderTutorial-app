@@ -11,6 +11,7 @@ class ProfileController: UIViewController {
     // MARK: - Properties
     private let user: User
     private let identifier = "ProfileCell"
+    private lazy var viewModel = ProfileViewModel(user: user)
     
     private lazy var collectionView: UICollectionView = {
         let frame = CGRect(x: 0,
@@ -42,15 +43,13 @@ class ProfileController: UIViewController {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Captain America"
+
         return label
     }()
     
     private let professionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
-        label.text = "Actor"
-        
         return label
     }()
     
@@ -58,7 +57,6 @@ class ProfileController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 20)
-        label.text = "Cool boy"
         return label
     }()
     
@@ -99,7 +97,7 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
+        loadUserData()
     }
     // MARK: - Actions
     @objc func handleDismiss() {
@@ -165,20 +163,22 @@ class ProfileController: UIViewController {
         
         return button
     }
+    
+    func loadUserData() {
+        infoLabel.attributedText = viewModel.userDetailsAttributedString
+        professionLabel.text = viewModel.profession
+        bioLabel.text = viewModel.bio
+    }
 }
 // MARK: - UICollectionViewDataSource
 extension ProfileController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        user.imageURLs.count
+        viewModel.imageCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-        if indexPath.row == 0 {
-            cell.backgroundColor = .red
-        } else {
-            cell.backgroundColor = .blue
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? ProfileCell else { return UICollectionViewCell()}
+        cell.imageView.sd_setImage(with: viewModel.imageURLs[indexPath.row])
         return cell
     }
 }
