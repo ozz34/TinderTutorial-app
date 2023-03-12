@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87136F5429BE1DD400EDD326 /* SegmentedBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */; };
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 		8795C89829AE1C00007868B3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C89729AE1C00007868B3 /* Extensions.swift */; };
 		8795C89A29AE1D32007868B3 /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */; };
 		8795C89C29AE2BF3007868B3 /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C89B29AE2BF3007868B3 /* BottomControlsStackView.swift */; };
+		87AE35C629BDD21E00AF2FC9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE35C529BDD21E00AF2FC9 /* ProfileViewModel.swift */; };
 		87C33A9A29AF5C87005FC13A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33A9929AF5C87005FC13A /* CardView.swift */; };
 		87C33A9C29AFA13D005FC13A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33A9B29AFA13D005FC13A /* User.swift */; };
 		87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */; };
@@ -62,10 +64,13 @@
 		87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B429B4906600AC6810 /* SettingsHeader.swift */; };
 		87D1C1B729B5F9C900AC6810 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B629B5F9C900AC6810 /* SettingsCell.swift */; };
 		87D1C1B929B5FB4A00AC6810 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */; };
+		87E9484629BB91D800A72742 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E9484529BB91D800A72742 /* ProfileController.swift */; };
+		87E9484829BB975A00A72742 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E9484729BB975A00A72742 /* ProfileCell.swift */; };
 		87F76DE829BB5A1F00123499 /* SettingsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F76DE729BB5A1F00123499 /* SettingsFooter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedBarView.swift; sourceTree = "<group>"; };
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 		8795C89729AE1C00007868B3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
 		8795C89B29AE2BF3007868B3 /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
+		87AE35C529BDD21E00AF2FC9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		87C33A9929AF5C87005FC13A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		87C33A9B29AFA13D005FC13A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
@@ -93,6 +99,8 @@
 		87D1C1B429B4906600AC6810 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		87D1C1B629B5F9C900AC6810 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		87E9484529BB91D800A72742 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		87E9484729BB975A00A72742 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		87F76DE729BB5A1F00123499 /* SettingsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +204,7 @@
 				87C33A9F29AFBF7A005FC13A /* Authentication */,
 				8795C89229AE0FAA007868B3 /* HomeController.swift */,
 				87D1C1B229B48C5300AC6810 /* SettingsController.swift */,
+				87E9484529BB91D800A72742 /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -206,6 +215,7 @@
 				87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */,
 				87C33AAA29B0AB76005FC13A /* AuthenticationViewModel.swift */,
 				87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */,
+				87AE35C529BDD21E00AF2FC9 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -217,6 +227,8 @@
 				8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */,
 				8795C89B29AE2BF3007868B3 /* BottomControlsStackView.swift */,
 				87C33A9929AF5C87005FC13A /* CardView.swift */,
+				87E9484729BB975A00A72742 /* ProfileCell.swift */,
+				87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -385,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87D1C1B329B48C5300AC6810 /* SettingsController.swift in Sources */,
+				87136F5429BE1DD400EDD326 /* SegmentedBarView.swift in Sources */,
 				87C33A9A29AF5C87005FC13A /* CardView.swift in Sources */,
 				87D1C1B129B2739F00AC6810 /* Constants.swift in Sources */,
 				87C33AA929B08E97005FC13A /* AuthButton.swift in Sources */,
@@ -393,10 +406,12 @@
 				8795C89C29AE2BF3007868B3 /* BottomControlsStackView.swift in Sources */,
 				8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */,
 				8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */,
+				87E9484629BB91D800A72742 /* ProfileController.swift in Sources */,
 				87C33A9C29AFA13D005FC13A /* User.swift in Sources */,
 				8795C89A29AE1D32007868B3 /* HomeNavigationStackView.swift in Sources */,
 				87C33AA529AFBFB3005FC13A /* RegistrationController.swift in Sources */,
 				87D1C18F29B1C9B600AC6810 /* Service.swift in Sources */,
+				87AE35C629BDD21E00AF2FC9 /* ProfileViewModel.swift in Sources */,
 				8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */,
 				87C33AA729AFCA4D005FC13A /* CustomTextField.swift in Sources */,
 				87D1C1B729B5F9C900AC6810 /* SettingsCell.swift in Sources */,
@@ -404,6 +419,7 @@
 				87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */,
 				87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
+				87E9484829BB975A00A72742 /* ProfileCell.swift in Sources */,
 				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
 				87D1C1B929B5FB4A00AC6810 /* SettingsViewModel.swift in Sources */,
 			);

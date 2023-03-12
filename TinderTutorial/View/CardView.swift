@@ -6,7 +6,10 @@
 //
 
 import UIKit
-import SDWebImage
+
+protocol CardViewDelegate: AnyObject {
+    func cardView(_ view: CardView, wantsToShowProfileFor user: User)
+}
 
 enum SwipeDirection: Int {
     case left = -1
@@ -15,7 +18,11 @@ enum SwipeDirection: Int {
 
 class CardView: UIView {
     // MARK: - Properties
+    weak var delegate: CardViewDelegate?
+    
     private let gradientLayer = CAGradientLayer()
+    
+    private lazy var barStackView = SegmentedBarView(numberOfSegments: viewModel.imageURLs.count)
     
     private var viewModel: CardViewModel
     
@@ -38,7 +45,10 @@ class CardView: UIView {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "info_icon")?.withRenderingMode(.alwaysOriginal),
                         for: .normal)
-
+        button.addTarget(self,
+                         action: #selector(handleShowProfile),
+                         for: .touchUpInside)
+        
         return button
     }()
     
@@ -48,16 +58,15 @@ class CardView: UIView {
         super.init(frame: .zero)
         
         configureGestureRecognizers()
-    
+        
         imageView.sd_setImage(with: viewModel.imageUrl)
         
-        backgroundColor = .systemPurple
         layer.cornerRadius = 10
         clipsToBounds = true
         
         addSubview(imageView)
         imageView.fillSuperview()
-        
+        configureBarStackView()
         configureGradientLayer()
         
         addSubview(infoLabel)
@@ -72,7 +81,7 @@ class CardView: UIView {
         infoButton.setDimensions(height: 40, width: 40)
         infoButton.centerY(inView: infoLabel)
         infoButton.anchor(right: rightAnchor,
-                         paddingRight: 16)
+                          paddingRight: 16)
     }
     
     required init?(coder: NSCoder) {
@@ -80,7 +89,7 @@ class CardView: UIView {
     }
     
     override func layoutSubviews() {
-       gradientLayer.frame = self.frame
+        gradientLayer.frame = self.frame
     }
     
     // MARK: - Actions
@@ -100,13 +109,19 @@ class CardView: UIView {
     @objc func handleChangePhoto(sender: UITapGestureRecognizer) {
         let location = sender.location(in: nil).x
         let shouldNextPhoto = location > self.frame.width / 2
-        
         if shouldNextPhoto {
             viewModel.showNextPhoto()
         } else {
             viewModel.showPreviousPhoto()
         }
-//        imageView.image = viewModel.imageToShow
+        //        imageView.image = viewModel.imageToShow
+        imageView.sd_setImage(with: viewModel.imageUrl)
+        
+        barStackView.setHighlighted(index: viewModel.index)
+    }
+    
+    @objc func handleShowProfile() {
+        delegate?.cardView(self, wantsToShowProfileFor: viewModel.user)
     }
     
     // MARK: - Helpers
@@ -154,5 +169,16 @@ class CardView: UIView {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleChangePhoto))
         addGestureRecognizer(tap)
+    }
+    
+    func configureBarStackView() {
+        addSubview(barStackView)
+        barStackView.anchor(top: topAnchor,
+                            left: leftAnchor,
+                            right: rightAnchor,
+                            paddingTop: 8,
+                            paddingLeft: 8,
+                            paddingRight: 8,
+                            height: 4)
     }
 }
