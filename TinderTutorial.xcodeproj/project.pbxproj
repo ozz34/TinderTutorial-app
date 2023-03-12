@@ -63,6 +63,7 @@
 		87D1C1B729B5F9C900AC6810 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B629B5F9C900AC6810 /* SettingsCell.swift */; };
 		87D1C1B929B5FB4A00AC6810 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */; };
 		87E9484629BB91D800A72742 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E9484529BB91D800A72742 /* ProfileController.swift */; };
+		87E9484829BB975A00A72742 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E9484729BB975A00A72742 /* ProfileCell.swift */; };
 		87F76DE829BB5A1F00123499 /* SettingsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F76DE729BB5A1F00123499 /* SettingsFooter.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		87D1C1B629B5F9C900AC6810 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		87E9484529BB91D800A72742 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		87E9484729BB975A00A72742 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		87F76DE729BB5A1F00123499 /* SettingsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +222,7 @@
 				8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */,
 				8795C89B29AE2BF3007868B3 /* BottomControlsStackView.swift */,
 				87C33A9929AF5C87005FC13A /* CardView.swift */,
+				87E9484729BB975A00A72742 /* ProfileCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */,
 				87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
+				87E9484829BB975A00A72742 /* ProfileCell.swift in Sources */,
 				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
 				87D1C1B929B5FB4A00AC6810 /* SettingsViewModel.swift in Sources */,
 			);
