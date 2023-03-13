@@ -11,9 +11,10 @@ import Firebase
 class HomeController: UIViewController {
     // MARK: - Properties
     private var user: User?
-    
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
+    private var topCardView: CardView?
+    private var cardViews = [CardView]()
     
     private var viewModels = [CardViewModel]() {
         didSet {
@@ -79,6 +80,8 @@ class HomeController: UIViewController {
             deckView.addSubview(cardView)
             cardView.fillSuperview()
         }
+        cardViews = deckView.subviews.map { $0 as! CardView }
+        topCardView = cardViews.last
     }
     
     func configureUI() {
@@ -108,6 +111,20 @@ class HomeController: UIViewController {
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
+        }
+    }
+    
+    func performSwipeAnimation(shouldLike: Bool) {
+        let translation: CGFloat = shouldLike ? 700 : -700
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut) {
+            self.topCardView?.frame = CGRect(x: translation, y: 0,
+                                             width: (self.topCardView?.frame.width)!,
+                                             height: (self.topCardView?.frame.height)!)
+        } completion: { _ in
+            guard !self.cardViews.isEmpty else { return }
+            self.topCardView?.removeFromSuperview()
+            self.cardViews.removeLast()
+            self.topCardView = self.cardViews.last
         }
     }
 }
@@ -150,11 +167,13 @@ extension HomeController: CardViewDelegate {
 
 extension HomeController: BottomControlsStackViewDelegate {
     func handleLike() {
-        print("like")
+        guard let topCard = topCardView else { return }
+        performSwipeAnimation(shouldLike: true)
     }
     
     func handleDislike() {
-        print("dislike")
+        guard let topCard = topCardView else { return }
+        performSwipeAnimation(shouldLike: false)
     }
     
     func handleRefresh() {

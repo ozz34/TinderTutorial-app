@@ -24,7 +24,7 @@ class CardView: UIView {
     
     private lazy var barStackView = SegmentedBarView(numberOfSegments: viewModel.imageURLs.count)
     
-    private var viewModel: CardViewModel
+    var viewModel: CardViewModel
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
