@@ -11,9 +11,10 @@ import Firebase
 class HomeController: UIViewController {
     // MARK: - Properties
     private var user: User?
-    
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
+    private var topCardView: CardView?
+    private var cardViews = [CardView]()
     
     private var viewModels = [CardViewModel]() {
         didSet {
@@ -79,12 +80,15 @@ class HomeController: UIViewController {
             deckView.addSubview(cardView)
             cardView.fillSuperview()
         }
+        cardViews = deckView.subviews.map { $0 as! CardView }
+        topCardView = cardViews.last
     }
     
     func configureUI() {
         view.backgroundColor = .white
         
         topStack.delegate = self
+        bottomStack.delegate = self
         
         let stack = UIStackView(arrangedSubviews: [topStack,
                                                    deckView,
@@ -107,6 +111,20 @@ class HomeController: UIViewController {
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
+        }
+    }
+    
+    func performSwipeAnimation(shouldLike: Bool) {
+        let translation: CGFloat = shouldLike ? 700 : -700
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut) {
+            self.topCardView?.frame = CGRect(x: translation, y: 0,
+                                             width: (self.topCardView?.frame.width)!,
+                                             height: (self.topCardView?.frame.height)!)
+        } completion: { _ in
+           // guard !self.cardViews.isEmpty else { return }
+            self.topCardView?.removeFromSuperview()
+            self.cardViews.removeLast()
+            self.topCardView = self.cardViews.last
         }
     }
 }
@@ -140,9 +158,56 @@ extension HomeController: SettingsControllerDelegate {
 }
 // MARK: - CardViewDelegate
 extension HomeController: CardViewDelegate {
+    func cardView(_ view: CardView, didLikeUser: Bool) {
+        view.removeFromSuperview()
+        self.cardViews.removeLast()
+        
+        guard let user = topCardView?.viewModel.user else { return }
+        Service.saveSwipe(forUser: user, isLike: didLikeUser)
+        self.topCardView = cardViews.last
+    }
+    
     func cardView(_ view: CardView, wantsToShowProfileFor user: User) {
         let controller = ProfileController(user: user)
+        controller.delegate = self
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
+    }
+}
+
+// MARK: - BottomControlsStackViewDelegate
+extension HomeController: BottomControlsStackViewDelegate {
+    func handleLike() {
+        guard let topCard = topCardView else { return }
+        performSwipeAnimation(shouldLike: true)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: true)
+     
+    }
+    
+    func handleDislike() {
+        guard let topCard = topCardView else { return }
+        performSwipeAnimation(shouldLike: false)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false)
+    }
+    
+    func handleRefresh() {
+        print("refresh")
+    }
+}
+
+// MARK: - ProfileControllerDelegate
+extension HomeController: ProfileControllerDelegate {
+    func profileController(_ controller: ProfileController, didLikeUser user: User) {
+        controller.dismiss(animated: true) {
+            self.performSwipeAnimation(shouldLike: true)
+            Service.saveSwipe(forUser: user, isLike: true)
+        }
+    }
+    
+    func profileController(_ controller: ProfileController, didDislikeUser user: User) {
+        controller.dismiss(animated: true) {
+            self.performSwipeAnimation(shouldLike: false)
+            Service.saveSwipe(forUser: user, isLike: false)
+        }
     }
 }

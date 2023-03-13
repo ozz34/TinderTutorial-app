@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol ProfileControllerDelegate: AnyObject {
+    func profileController(_ controller: ProfileController, didLikeUser user: User)
+    func profileController(_ controller: ProfileController, didDislikeUser user: User)
+}
+
 class ProfileController: UIViewController {
     // MARK: - Properties
     private let user: User
     private let identifier = "ProfileCell"
     private lazy var viewModel = ProfileViewModel(user: user)
     private lazy var barStackView = SegmentedBarView(numberOfSegments: viewModel.imageURLs.count)
+    weak var delegate: ProfileControllerDelegate?
 
     private lazy var collectionView: UICollectionView = {
         let frame = CGRect(x: 0,
@@ -112,7 +118,7 @@ class ProfileController: UIViewController {
     }
     
     @objc func handleDislike() {
-       
+        delegate?.profileController(self, didDislikeUser: user)
     }
     
     @objc func handleSuperlike() {
@@ -120,7 +126,7 @@ class ProfileController: UIViewController {
     }
     
     @objc func handleLike() {
-        
+        delegate?.profileController(self, didLikeUser: user)
     }
     
     // MARK: - Helpers

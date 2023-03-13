@@ -60,4 +60,18 @@ struct Service {
             completion(users)
         }
     }
+    
+    static func saveSwipe(forUser user: User, isLike: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+       
+        COLLECTION_SWIPES.document(uid).getDocument { (snapshot, error) in
+            let data = [user.uid: isLike]
+            
+            if snapshot?.exists == true {
+                COLLECTION_SWIPES.document(uid).updateData(data)
+            } else {
+                COLLECTION_SWIPES.document(uid).setData(data)
+            }
+        }
+    }
 }
