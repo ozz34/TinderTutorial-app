@@ -62,7 +62,7 @@ class MatchView: UIView {
     }()
     
     private lazy var keepSwipingButton: UIButton = {
-        let button = SendMessageButton(type: .system)
+        let button = KeepSwipingButton(type: .system)
         button.setTitle("Keep swiping", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self,
