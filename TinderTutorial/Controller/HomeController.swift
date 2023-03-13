@@ -121,7 +121,7 @@ class HomeController: UIViewController {
                                              width: (self.topCardView?.frame.width)!,
                                              height: (self.topCardView?.frame.height)!)
         } completion: { _ in
-            guard !self.cardViews.isEmpty else { return }
+           // guard !self.cardViews.isEmpty else { return }
             self.topCardView?.removeFromSuperview()
             self.cardViews.removeLast()
             self.topCardView = self.cardViews.last
@@ -169,11 +169,14 @@ extension HomeController: BottomControlsStackViewDelegate {
     func handleLike() {
         guard let topCard = topCardView else { return }
         performSwipeAnimation(shouldLike: true)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: true)
+     
     }
     
     func handleDislike() {
         guard let topCard = topCardView else { return }
         performSwipeAnimation(shouldLike: false)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false)
     }
     
     func handleRefresh() {
