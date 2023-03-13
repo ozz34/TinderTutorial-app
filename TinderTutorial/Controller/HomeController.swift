@@ -158,6 +158,15 @@ extension HomeController: SettingsControllerDelegate {
 }
 // MARK: - CardViewDelegate
 extension HomeController: CardViewDelegate {
+    func cardView(_ view: CardView, didLikeUser: Bool) {
+        view.removeFromSuperview()
+        self.cardViews.removeLast()
+        
+        guard let user = topCardView?.viewModel.user else { return }
+        Service.saveSwipe(forUser: user, isLike: didLikeUser)
+        self.topCardView = cardViews.last
+    }
+    
     func cardView(_ view: CardView, wantsToShowProfileFor user: User) {
         let controller = ProfileController(user: user)
         controller.modalPresentationStyle = .fullScreen

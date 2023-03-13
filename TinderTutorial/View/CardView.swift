@@ -9,6 +9,7 @@ import UIKit
 
 protocol CardViewDelegate: AnyObject {
     func cardView(_ view: CardView, wantsToShowProfileFor user: User)
+    func cardView(_ view: CardView, didLikeUser: Bool)
 }
 
 enum SwipeDirection: Int {
@@ -151,7 +152,8 @@ class CardView: UIView {
             }
         }) { _ in
             if shouldDismissCard {
-                self.removeFromSuperview()
+                let didLike = direction == .right
+                self.delegate?.cardView(self, didLikeUser: didLike)
             }
         }
     }
