@@ -25,6 +25,7 @@ class MatchView: UIView {
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 0
+        label.text = "You and Joker have liked each other!"
         
         return label
     }()
@@ -62,7 +63,7 @@ class MatchView: UIView {
     
     private lazy var keepSwipingButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("SEND MESSAGE", for: .normal)
+        button.setTitle("Keep swiping", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self,
                          action: #selector(didTapKeepSwiping),
@@ -88,6 +89,7 @@ class MatchView: UIView {
         super.init(frame: .zero)
         
         configureBlurView()
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -102,19 +104,73 @@ class MatchView: UIView {
         
     }
     
+    @objc func handleDismissal() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseOut) {
+            self.alpha = 0
+        } completion: { _ in
+            self.removeFromSuperview()
+        }
+    }
+
     // MARK: - Helpers
     func configureUI() {
         views.forEach { view in
             addSubview(view)
             view.alpha = 1
         }
+        
+        currentUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
+        currentUserImageView.setDimensions(height: 140, width: 140)
+        currentUserImageView.layer.cornerRadius = 140 / 2
+        currentUserImageView.centerY(inView: self)
+        
+        matchedUserImageView.anchor(right: centerXAnchor, paddingRight: 16)
+        matchedUserImageView.setDimensions(height: 140, width: 140)
+        matchedUserImageView.layer.cornerRadius = 140 / 2
+        matchedUserImageView.centerY(inView: self)
+        
+        sendMessageButton.anchor(top: currentUserImageView.bottomAnchor,
+                                 left: leftAnchor,
+                                 right: rightAnchor,
+                                 paddingTop: 32,
+                                 paddingLeft: 48,
+                                 paddingRight: 48)
+        keepSwipingButton.anchor(top: sendMessageButton.bottomAnchor,
+                                 left: leftAnchor,
+                                 right: rightAnchor,
+                                 paddingTop: 32,
+                                 paddingLeft: 48,
+                                 paddingRight: 48)
+        
+        descriptionLabel.anchor(left: leftAnchor,
+                                bottom: currentUserImageView.topAnchor,
+                                right: rightAnchor,
+                                paddingLeft: 16,
+                                paddingBottom: 32,
+                                paddingRight: 16)
+        matchImageView.anchor(bottom: descriptionLabel.topAnchor, paddingBottom: 16)
+        matchImageView.centerX(inView: self)
+        matchImageView.setDimensions(height: 80, width: 300)
     }
     
     func configureBlurView() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissal))
+        visualEffectView.addGestureRecognizer(tap)
+        
         addSubview(visualEffectView)
         visualEffectView.fillSuperview()
         visualEffectView.alpha = 0
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { self.visualEffectView.alpha = 1 }, completion: nil)
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseOut,
+                       animations: { self.visualEffectView.alpha = 1 },
+                       completion: nil)
     }
 }

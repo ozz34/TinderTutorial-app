@@ -137,7 +137,11 @@ class HomeController: UIViewController {
     
     func performSwipeAnimation(shouldLike: Bool) {
         let translation: CGFloat = shouldLike ? 700 : -700
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut) {
+        UIView.animate(withDuration: 1.0,
+                       delay: 0,
+                       usingSpringWithDamping: 0.6,
+                       initialSpringVelocity: 0.1,
+                       options: .curveEaseOut) {
             self.topCardView?.frame = CGRect(x: translation, y: 0,
                                              width: (self.topCardView?.frame.width)!,
                                              height: (self.topCardView?.frame.height)!)
