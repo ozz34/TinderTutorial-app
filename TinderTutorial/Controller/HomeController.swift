@@ -85,6 +85,7 @@ class HomeController: UIViewController {
         view.backgroundColor = .white
         
         topStack.delegate = self
+        bottomStack.delegate = self
         
         let stack = UIStackView(arrangedSubviews: [topStack,
                                                    deckView,
@@ -144,5 +145,19 @@ extension HomeController: CardViewDelegate {
         let controller = ProfileController(user: user)
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
+    }
+}
+
+extension HomeController: BottomControlsStackViewDelegate {
+    func handleLike() {
+        print("like")
+    }
+    
+    func handleDislike() {
+        print("dislike")
+    }
+    
+    func handleRefresh() {
+        print("refresh")
     }
 }
