@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol AuthenticationDelegate: AnyObject {
+    func authenticationComplete()
+}
+
 class LoginController: UIViewController {
     // MARK: - Properties
     
     private var viewModel = LoginViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     private let iconImageView: UIImageView = {
        let iv = UIImageView()
@@ -64,12 +69,13 @@ class LoginController: UIViewController {
             if let error {
                 print("Debug: Error logging user in \(error.localizedDescription)")
             }
-            self.dismiss(animated: true)
+            self.delegate?.authenticationComplete()
         }
     }
     
     @objc func handleShowRegistration() {
         let controller = RegistrationController()
+        controller.delegate = delegate
         navigationController?.pushViewController(controller, animated: true)
     }
     

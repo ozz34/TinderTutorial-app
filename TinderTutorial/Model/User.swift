@@ -26,7 +26,7 @@ struct User {
         self.uid = dictionary["uid"] as? String ?? ""
         self.profession = dictionary["profession"] as? String ?? ""
         self.minSeekingAge = dictionary["minSeekingAge"] as? Int ?? 18
-        self.maxSeekingAge = dictionary["maxbSeekingAge"] as? Int ?? 40
+        self.maxSeekingAge = dictionary["maxSeekingAge"] as? Int ?? 40
         self.bio = dictionary["bio"] as? String ?? ""
      }
 }

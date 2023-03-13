@@ -10,6 +10,7 @@ import UIKit
 class RegistrationController: UIViewController {
     // MARK: - Properties
     private var viewModel = RegistrationViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     private lazy var selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -82,7 +83,7 @@ class RegistrationController: UIViewController {
             if let error {
                 print("Debug: Error signing user up \(error.localizedDescription)")
             }
-            self.dismiss(animated: true)
+            self.delegate?.authenticationComplete()
         }
     }
     

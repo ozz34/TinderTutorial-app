@@ -35,23 +35,23 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         configureUI()
         checkIsUserIsLoggedIn()
-        fetchUser()
-        fetchUsers()
+        fetchCurrentUserAndCards()
     }
     
     // MARK: - API
-    func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Service.fetchUser(withUid: uid) { user in
-            self.user = user
-        }
-    }
-    
-    func fetchUsers() {
-        Service.fetchUsers { users in
+    func fetchUsers(forCurrentUser user: User) {
+        Service.fetchUsers(forCurrentUser: user) { users in
             self.viewModels = users.map {
                 CardViewModel(user: $0)
             }
+        }
+    }
+    
+    func fetchCurrentUserAndCards() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Service.fetchUser(withUid: uid) { user in
+            self.user = user
+            self.fetchUsers(forCurrentUser: user)
         }
     }
     
@@ -108,6 +108,7 @@ class HomeController: UIViewController {
     func presentLoginController() {
         DispatchQueue.main.async {
             let controller = LoginController()
+            controller.delegate = self
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
@@ -209,5 +210,13 @@ extension HomeController: ProfileControllerDelegate {
             self.performSwipeAnimation(shouldLike: false)
             Service.saveSwipe(forUser: user, isLike: false)
         }
+    }
+}
+
+// MARK: - AuthenticationDelegate
+extension HomeController: AuthenticationDelegate {
+    func authenticationComplete() {
+        dismiss(animated: true)
+        fetchCurrentUserAndCards()
     }
 }

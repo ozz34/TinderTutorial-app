@@ -48,13 +48,17 @@ struct Service {
         }
     }
     
-    static func fetchUsers(completion: @escaping([User]) -> Void) {
+    static func fetchUsers(forCurrentUser user: User, completion: @escaping([User]) -> Void) {
         var users = [User]()
         
-        COLLECTION_USERS.getDocuments { (snapshot, error) in
+        let query = COLLECTION_USERS.whereField("age", isGreaterThanOrEqualTo: user.minSeekingAge)
+                                    .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
+        query.getDocuments { (snapshot, error) in
             snapshot?.documents.forEach { document in
                 let dictionary = document.data()
                 let user = User(dictionary: dictionary)
+                
+                guard user.uid != Auth.auth().currentUser?.uid else { return }
                 users.append(user)
             }
             completion(users)
