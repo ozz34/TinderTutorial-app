@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		87136F5429BE1DD400EDD326 /* SegmentedBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */; };
 		8716F52529BF84A000746394 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52429BF84A000746394 /* MatchView.swift */; };
+		8716F52729BF953100746394 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52629BF953100746394 /* SendMessageButton.swift */; };
+		8716F52929BF953E00746394 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52829BF953E00746394 /* KeepSwipingButton.swift */; };
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
@@ -73,6 +75,8 @@
 /* Begin PBXFileReference section */
 		87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedBarView.swift; sourceTree = "<group>"; };
 		8716F52429BF84A000746394 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		8716F52629BF953100746394 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
+		8716F52829BF953E00746394 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 				87E9484729BB975A00A72742 /* ProfileCell.swift */,
 				87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */,
 				8716F52429BF84A000746394 /* MatchView.swift */,
+				8716F52629BF953100746394 /* SendMessageButton.swift */,
+				8716F52829BF953E00746394 /* KeepSwipingButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -423,7 +429,9 @@
 				87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */,
 				87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
+				8716F52929BF953E00746394 /* KeepSwipingButton.swift in Sources */,
 				87E9484829BB975A00A72742 /* ProfileCell.swift in Sources */,
+				8716F52729BF953100746394 /* SendMessageButton.swift in Sources */,
 				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
 				87D1C1B929B5FB4A00AC6810 /* SettingsViewModel.swift in Sources */,
 			);
