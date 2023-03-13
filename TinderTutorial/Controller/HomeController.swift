@@ -169,11 +169,13 @@ extension HomeController: CardViewDelegate {
     
     func cardView(_ view: CardView, wantsToShowProfileFor user: User) {
         let controller = ProfileController(user: user)
+        controller.delegate = self
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
     }
 }
 
+// MARK: - BottomControlsStackViewDelegate
 extension HomeController: BottomControlsStackViewDelegate {
     func handleLike() {
         guard let topCard = topCardView else { return }
@@ -190,5 +192,22 @@ extension HomeController: BottomControlsStackViewDelegate {
     
     func handleRefresh() {
         print("refresh")
+    }
+}
+
+// MARK: - ProfileControllerDelegate
+extension HomeController: ProfileControllerDelegate {
+    func profileController(_ controller: ProfileController, didLikeUser user: User) {
+        controller.dismiss(animated: true) {
+            self.performSwipeAnimation(shouldLike: true)
+            Service.saveSwipe(forUser: user, isLike: true)
+        }
+    }
+    
+    func profileController(_ controller: ProfileController, didDislikeUser user: User) {
+        controller.dismiss(animated: true) {
+            self.performSwipeAnimation(shouldLike: false)
+            Service.saveSwipe(forUser: user, isLike: false)
+        }
     }
 }
