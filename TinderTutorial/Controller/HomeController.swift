@@ -36,12 +36,11 @@ class HomeController: UIViewController {
         configureUI()
         checkIsUserIsLoggedIn()
         fetchCurrentUserAndCards()
-        fetchUsers()
     }
     
     // MARK: - API
-    func fetchUsers() {
-        Service.fetchUsers { users in
+    func fetchUsers(forCurrentUser user: User) {
+        Service.fetchUsers(forCurrentUser: user) { users in
             self.viewModels = users.map {
                 CardViewModel(user: $0)
             }
@@ -52,7 +51,7 @@ class HomeController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
             self.user = user
-            self.fetchUsers()
+            self.fetchUsers(forCurrentUser: user)
         }
     }
     
