@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol MatchViewDelegate: AnyObject {
+    func matchView(_ view: MatchView, wantsToSendMessageTo user: User)
+}
+
 class MatchView: UIView {
     // MARK: - Properties
     private let viewModel: MatchViewViewModel
+    weak var delegate: MatchViewDelegate?
     
     private let matchImageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "itsamatch"))
@@ -24,13 +29,12 @@ class MatchView: UIView {
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 0
-        label.text = "You and Joker have liked each other!"
         
         return label
     }()
     
     private let currentUserImageView: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "jane1"))
+        let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderWidth = 2
@@ -40,7 +44,7 @@ class MatchView: UIView {
     }()
     
     private let matchedUserImageView: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "jane2"))
+        let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderWidth = 2
@@ -65,7 +69,7 @@ class MatchView: UIView {
         button.setTitle("Keep swiping", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self,
-                         action: #selector(didTapKeepSwiping),
+                         action: #selector(handleDismissal),
                          for: .touchUpInside)
         
         return button
@@ -97,11 +101,7 @@ class MatchView: UIView {
     }
     // MARK: - Actions
     @objc func didTapSendMessage() {
-        
-    }
-    
-    @objc func didTapKeepSwiping() {
-        
+        delegate?.matchView(self, wantsToSendMessageTo: viewModel.matchedUser)
     }
     
     @objc func handleDismissal() {
