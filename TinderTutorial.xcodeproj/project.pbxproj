@@ -11,6 +11,7 @@
 		8716F52529BF84A000746394 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52429BF84A000746394 /* MatchView.swift */; };
 		8716F52729BF953100746394 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52629BF953100746394 /* SendMessageButton.swift */; };
 		8716F52929BF953E00746394 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52829BF953E00746394 /* KeepSwipingButton.swift */; };
+		8716F52B29C0619E00746394 /* MatchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52A29C0619E00746394 /* MatchViewViewModel.swift */; };
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
@@ -77,6 +78,7 @@
 		8716F52429BF84A000746394 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		8716F52629BF953100746394 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
 		8716F52829BF953E00746394 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
+		8716F52A29C0619E00746394 /* MatchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewViewModel.swift; sourceTree = "<group>"; };
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				87C33AAA29B0AB76005FC13A /* AuthenticationViewModel.swift */,
 				87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */,
 				87AE35C529BDD21E00AF2FC9 /* ProfileViewModel.swift */,
+				8716F52A29C0619E00746394 /* MatchViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				87AE35C629BDD21E00AF2FC9 /* ProfileViewModel.swift in Sources */,
 				8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */,
 				87C33AA729AFCA4D005FC13A /* CustomTextField.swift in Sources */,
+				8716F52B29C0619E00746394 /* MatchViewViewModel.swift in Sources */,
 				87D1C1B729B5F9C900AC6810 /* SettingsCell.swift in Sources */,
 				8795C89829AE1C00007868B3 /* Extensions.swift in Sources */,
 				87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */,

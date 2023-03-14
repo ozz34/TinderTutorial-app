@@ -9,8 +9,7 @@ import UIKit
 
 class MatchView: UIView {
     // MARK: - Properties
-    private let currentUser: User
-    private let matchedUser: User
+    private let viewModel: MatchViewViewModel
     
     private let matchImageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "itsamatch"))
@@ -83,11 +82,11 @@ class MatchView: UIView {
     keepSwipingButton]
     
     // MARK: - Lifecycle
-    init(currentUser: User, matchedUser: User) {
-        self.currentUser = currentUser
-        self.matchedUser = matchedUser
+    init(viewModel: MatchViewViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
         
+        loadUserData()
         configureBlurView()
         configureUI()
         configureAnimations()
@@ -118,18 +117,24 @@ class MatchView: UIView {
     }
 
     // MARK: - Helpers
+    func loadUserData() {
+        descriptionLabel.text = viewModel.matchLabelText
+        currentUserImageView.sd_setImage(with: viewModel.currentUserImageUrl)
+        matchedUserImageView.sd_setImage(with: viewModel.matchedUserImageUrl)
+    }
+    
     func configureUI() {
         views.forEach { view in
             addSubview(view)
-            view.alpha = 1
+            view.alpha = 0
         }
         
-        currentUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
+        currentUserImageView.anchor(right: centerXAnchor, paddingRight: 16)
         currentUserImageView.setDimensions(height: 140, width: 140)
         currentUserImageView.layer.cornerRadius = 140 / 2
         currentUserImageView.centerY(inView: self)
         
-        matchedUserImageView.anchor(right: centerXAnchor, paddingRight: 16)
+        matchedUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
         matchedUserImageView.setDimensions(height: 140, width: 140)
         matchedUserImageView.layer.cornerRadius = 140 / 2
         matchedUserImageView.centerY(inView: self)
