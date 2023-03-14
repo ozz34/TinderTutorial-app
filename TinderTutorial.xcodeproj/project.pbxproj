@@ -15,6 +15,7 @@
 		8716F52D29C07FCD00746394 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52C29C07FCD00746394 /* MessagesController.swift */; };
 		8716F54D29C095CC00746394 /* MatchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F54C29C095CC00746394 /* MatchHeader.swift */; };
 		8716F54F29C0997E00746394 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F54E29C0997E00746394 /* MatchCell.swift */; };
+		8716F55129C0A07800746394 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F55029C0A07800746394 /* Match.swift */; };
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
@@ -85,6 +86,7 @@
 		8716F52C29C07FCD00746394 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		8716F54C29C095CC00746394 /* MatchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeader.swift; sourceTree = "<group>"; };
 		8716F54E29C0997E00746394 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		8716F55029C0A07800746394 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				87C33A9B29AFA13D005FC13A /* User.swift */,
+				8716F55029C0A07800746394 /* Match.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				8795C89829AE1C00007868B3 /* Extensions.swift in Sources */,
 				87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */,
 				87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */,
+				8716F55129C0A07800746394 /* Match.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
 				8716F52929BF953E00746394 /* KeepSwipingButton.swift in Sources */,
 				87E9484829BB975A00A72742 /* ProfileCell.swift in Sources */,

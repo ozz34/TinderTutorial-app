@@ -104,4 +104,21 @@ struct Service {
             completion(data)
         }
     }
+    
+    static func uploadMatch(currentUser: User, matchedUser: User) {
+        guard let profileImageUrl = matchedUser.imageURLs.first else { return }
+        guard let currentUserProfileImageUrl = currentUser.imageURLs.first else { return }
+        
+        let matchedUserData = ["uid": matchedUser.uid,
+                               "name": matchedUser.name,
+                               "profileImageUrl": profileImageUrl]
+        COLLECTION_MATCHES_MESSAGES.document(currentUser.uid)
+            .collection("matches").document(matchedUser.uid).setData(matchedUserData)
+        
+        let currentUserData = ["uid": currentUser.uid,
+                               "name": currentUser.name,
+                               "profileImageUrl": currentUserProfileImageUrl]
+        COLLECTION_MATCHES_MESSAGES.document(matchedUser.uid)
+            .collection("matches").document(currentUser.uid).setData(currentUserData)
+    }
 }

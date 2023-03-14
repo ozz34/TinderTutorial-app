@@ -80,6 +80,9 @@ class HomeController: UIViewController {
             Service.checkIfMatchExist(forUser: user) { didMatch in
                 if didMatch == didLike {
                     self.presentMatchView(forUser: user)
+                    
+                    guard let currentUser = self.user else { return }
+                    Service.uploadMatch(currentUser: currentUser, matchedUser: user)
                 }
             }
         }
