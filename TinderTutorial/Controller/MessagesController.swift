@@ -45,7 +45,7 @@ class MessagesController: UITableViewController {
     // MARK: - Helpers
     func configureTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
-        tableView.rowHeight = 80
+        tableView.rowHeight = 50
         tableView.tableFooterView = UIView()
         
         headerView.frame = CGRect(x: 0,
@@ -53,6 +53,7 @@ class MessagesController: UITableViewController {
                                   width: view.frame.width,
                                   height: 200)
         tableView.tableHeaderView = headerView
+        headerView.delegate = self
     }
 
     
@@ -105,5 +106,14 @@ extension MessagesController {
                       leftAnchor: view.leftAnchor,
                       paddingLeft: 12)
         return view
+    }
+}
+
+// MARK: - MatchHeaderDelegate
+extension MessagesController: MatchHeaderDelegate {
+    func matchHeader(_ header: MatchHeader, wantsToStartChatWith uid: String) {
+        Service.fetchUser(withUid: uid) { user in
+            print("Start chat message with: \(user.name)")
+        }
     }
 }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MatchHeaderDelegate: AnyObject {
+    func matchHeader(_ header: MatchHeader, wantsToStartChatWith uid: String)
+}
+
 class MatchHeader: UICollectionReusableView {
     // MARK: - Properties
     private let identifier = "MatchCell"
@@ -15,6 +19,8 @@ class MatchHeader: UICollectionReusableView {
             collectionView.reloadData()
         }
     }
+    
+    weak var delegate: MatchHeaderDelegate?
     
     private let newMatchesLabel: UILabel = {
         let label = UILabel()
@@ -78,12 +84,15 @@ extension MatchHeader: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension MatchHeader: UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let uid = matches[indexPath.row].uid
+        delegate?.matchHeader(self, wantsToStartChatWith: uid)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MatchHeader: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 80, height: 108)
+        CGSize(width: 88, height: 124)
     }
 }
