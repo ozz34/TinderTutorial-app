@@ -55,7 +55,6 @@ struct Service {
                                     .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
         
         self.fetchSwipes { swipedUserIDs in
-            print(swipedUserIDs)
             query.getDocuments { (snapshot, error) in
                 snapshot?.documents.forEach { document in
                     let dictionary = document.data()

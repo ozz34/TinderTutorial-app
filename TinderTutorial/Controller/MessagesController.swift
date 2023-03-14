@@ -12,6 +12,8 @@ class MessagesController: UITableViewController {
     private let user: User
     private let identifier = "MessageCell"
     
+    private let headerView = MatchHeader()
+    
     // MARK: - Lifecycle
     init(user: User) {
         self.user = user
@@ -38,6 +40,12 @@ class MessagesController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
         tableView.rowHeight = 80
         tableView.tableFooterView = UIView()
+        
+        headerView.frame = CGRect(x: 0,
+                                  y: 0,
+                                  width: view.frame.width,
+                                  height: 200)
+        tableView.tableHeaderView = headerView
     }
 
     
