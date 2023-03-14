@@ -16,6 +16,7 @@
 		8716F54D29C095CC00746394 /* MatchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F54C29C095CC00746394 /* MatchHeader.swift */; };
 		8716F54F29C0997E00746394 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F54E29C0997E00746394 /* MatchCell.swift */; };
 		8716F55129C0A07800746394 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F55029C0A07800746394 /* Match.swift */; };
+		8716F55329C0E50100746394 /* MatchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F55229C0E50100746394 /* MatchCellViewModel.swift */; };
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
@@ -87,6 +88,7 @@
 		8716F54C29C095CC00746394 /* MatchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeader.swift; sourceTree = "<group>"; };
 		8716F54E29C0997E00746394 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		8716F55029C0A07800746394 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		8716F55229C0E50100746394 /* MatchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCellViewModel.swift; sourceTree = "<group>"; };
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */,
 				87AE35C529BDD21E00AF2FC9 /* ProfileViewModel.swift */,
 				8716F52A29C0619E00746394 /* MatchViewViewModel.swift */,
+				8716F55229C0E50100746394 /* MatchCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				87F76DE829BB5A1F00123499 /* SettingsFooter.swift in Sources */,
 				8795C89C29AE2BF3007868B3 /* BottomControlsStackView.swift in Sources */,
 				8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */,
+				8716F55329C0E50100746394 /* MatchCellViewModel.swift in Sources */,
 				8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */,
 				87E9484629BB91D800A72742 /* ProfileController.swift in Sources */,
 				87C33A9C29AFA13D005FC13A /* User.swift in Sources */,

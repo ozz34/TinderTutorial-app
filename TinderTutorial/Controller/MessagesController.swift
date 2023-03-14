@@ -28,11 +28,18 @@ class MessagesController: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         configureNavigationBar()
+        fetchMatches()
     }
     
     // MARK: - Actions
     @objc func handleDismissal() {
         dismiss(animated: true)
+    }
+    // MARK: - API
+    func fetchMatches() {
+        Service.fetchMatches { matches in
+            self.headerView.matches = matches
+        }
     }
     
     // MARK: - Helpers

@@ -9,8 +9,15 @@ import UIKit
 
 class MatchCell: UICollectionViewCell {
     // MARK: - Properties
+    var viewModel: MatchCellViewModel! {
+        didSet {
+            profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+            userNameLabel.text = viewModel.nameText
+        }
+    }
+    
     private let profileImageView: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "jane1"))
+        let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderWidth = 2
@@ -23,7 +30,6 @@ class MatchCell: UICollectionViewCell {
     
     private let userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Username"
         label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .darkGray
         label.textAlignment = .center

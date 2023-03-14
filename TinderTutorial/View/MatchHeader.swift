@@ -10,6 +10,11 @@ import UIKit
 class MatchHeader: UICollectionReusableView {
     // MARK: - Properties
     private let identifier = "MatchCell"
+    var matches = [Match]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     private let newMatchesLabel: UILabel = {
         let label = UILabel()
@@ -60,10 +65,12 @@ class MatchHeader: UICollectionReusableView {
 // MARK: - UICollectionViewDataSource
 extension MatchHeader: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        matches.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? MatchCell else { return UICollectionViewCell() }
+        cell.viewModel = MatchCellViewModel(match: matches[indexPath.row])
         
         return cell
     }
