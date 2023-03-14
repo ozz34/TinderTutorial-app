@@ -53,15 +53,20 @@ struct Service {
         
         let query = COLLECTION_USERS.whereField("age", isGreaterThanOrEqualTo: user.minSeekingAge)
                                     .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
-        query.getDocuments { (snapshot, error) in
-            snapshot?.documents.forEach { document in
-                let dictionary = document.data()
-                let user = User(dictionary: dictionary)
-                
-                guard user.uid != Auth.auth().currentUser?.uid else { return }
-                users.append(user)
+        
+        self.fetchSwipes { swipedUserIDs in
+            print(swipedUserIDs)
+            query.getDocuments { (snapshot, error) in
+                snapshot?.documents.forEach { document in
+                    let dictionary = document.data()
+                    let user = User(dictionary: dictionary)
+                    
+                    guard user.uid != Auth.auth().currentUser?.uid else { return }
+                    guard swipedUserIDs[user.uid] == nil else { return }
+                    users.append(user)
+                }
+                completion(users)
             }
-            completion(users)
         }
     }
     
@@ -86,6 +91,18 @@ struct Service {
             guard let data = snapshot?.data() else { return }
             guard let didMatch = data[currentUid] as? Bool else { return }
             completion(didMatch)
+        }
+    }
+    
+    private static func fetchSwipes(completion: @escaping([String: Bool])-> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        COLLECTION_SWIPES.document(uid).getDocument { (snapshot, error) in
+            guard let data = snapshot?.data() as? [String: Bool] else {
+                completion([String: Bool]())
+                return
+            }
+            completion(data)
         }
     }
 }
