@@ -41,7 +41,7 @@ class MatchView: UIView {
     }()
     
     private let matchedUserImageView: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "jane1"))
+        let iv = UIImageView(image: UIImage(named: "jane2"))
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderWidth = 2
@@ -90,6 +90,7 @@ class MatchView: UIView {
         
         configureBlurView()
         configureUI()
+        configureAnimations()
     }
     
     required init?(coder: NSCoder) {
@@ -158,6 +159,42 @@ class MatchView: UIView {
         matchImageView.anchor(bottom: descriptionLabel.topAnchor, paddingBottom: 16)
         matchImageView.centerX(inView: self)
         matchImageView.setDimensions(height: 80, width: 300)
+    
+    }
+    
+    func configureAnimations() {
+        views.forEach { $0.alpha = 1 }
+        
+        let angle = 30 * CGFloat.pi / 180
+        
+        currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle).concatenating(CGAffineTransform(translationX: 200, y: 0))
+        matchedUserImageView.transform = CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(translationX: -200, y: 0))
+        
+        self.sendMessageButton.transform = CGAffineTransform(translationX: -500, y: 0)
+        self.keepSwipingButton.transform = CGAffineTransform(translationX: 500, y: 0)
+        
+        UIView.animateKeyframes(withDuration: 1.3,
+                                delay: 0,
+                                options: .calculationModeCubic) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.45) {
+                self.currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle)
+                self.matchedUserImageView.transform = CGAffineTransform(rotationAngle: -angle)
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.6, relativeDuration: 0.4) {
+                self.currentUserImageView.transform = .identity
+                self.matchedUserImageView.transform = .identity
+            }
+        }
+        
+        UIView.animate(withDuration: 0.75,
+                       delay: 0.6 * 1.3,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0.1,
+                       options: .curveEaseOut) {
+            self.sendMessageButton.transform = .identity
+            self.keepSwipingButton.transform = .identity
+        }
     }
     
     func configureBlurView() {
