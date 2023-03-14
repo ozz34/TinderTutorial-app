@@ -12,6 +12,7 @@
 		8716F52729BF953100746394 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52629BF953100746394 /* SendMessageButton.swift */; };
 		8716F52929BF953E00746394 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52829BF953E00746394 /* KeepSwipingButton.swift */; };
 		8716F52B29C0619E00746394 /* MatchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52A29C0619E00746394 /* MatchViewViewModel.swift */; };
+		8716F52D29C07FCD00746394 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52C29C07FCD00746394 /* MessagesController.swift */; };
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
@@ -79,6 +80,7 @@
 		8716F52629BF953100746394 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
 		8716F52829BF953E00746394 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		8716F52A29C0619E00746394 /* MatchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewViewModel.swift; sourceTree = "<group>"; };
+		8716F52C29C07FCD00746394 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				8795C89229AE0FAA007868B3 /* HomeController.swift */,
 				87D1C1B229B48C5300AC6810 /* SettingsController.swift */,
 				87E9484529BB91D800A72742 /* ProfileController.swift */,
+				8716F52C29C07FCD00746394 /* MessagesController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				8716F52729BF953100746394 /* SendMessageButton.swift in Sources */,
 				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
 				87D1C1B929B5FB4A00AC6810 /* SettingsViewModel.swift in Sources */,
+				8716F52D29C07FCD00746394 /* MessagesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
