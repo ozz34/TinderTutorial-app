@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		87136F5429BE1DD400EDD326 /* SegmentedBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */; };
+		8716F52529BF84A000746394 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52429BF84A000746394 /* MatchView.swift */; };
+		8716F52729BF953100746394 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52629BF953100746394 /* SendMessageButton.swift */; };
+		8716F52929BF953E00746394 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52829BF953E00746394 /* KeepSwipingButton.swift */; };
+		8716F52B29C0619E00746394 /* MatchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52A29C0619E00746394 /* MatchViewViewModel.swift */; };
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
@@ -71,6 +75,10 @@
 
 /* Begin PBXFileReference section */
 		87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedBarView.swift; sourceTree = "<group>"; };
+		8716F52429BF84A000746394 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		8716F52629BF953100746394 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
+		8716F52829BF953E00746394 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
+		8716F52A29C0619E00746394 /* MatchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewViewModel.swift; sourceTree = "<group>"; };
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +224,7 @@
 				87C33AAA29B0AB76005FC13A /* AuthenticationViewModel.swift */,
 				87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */,
 				87AE35C529BDD21E00AF2FC9 /* ProfileViewModel.swift */,
+				8716F52A29C0619E00746394 /* MatchViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -229,6 +238,9 @@
 				87C33A9929AF5C87005FC13A /* CardView.swift */,
 				87E9484729BB975A00A72742 /* ProfileCell.swift */,
 				87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */,
+				8716F52429BF84A000746394 /* MatchView.swift */,
+				8716F52629BF953100746394 /* SendMessageButton.swift */,
+				8716F52829BF953E00746394 /* KeepSwipingButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,17 +421,21 @@
 				87E9484629BB91D800A72742 /* ProfileController.swift in Sources */,
 				87C33A9C29AFA13D005FC13A /* User.swift in Sources */,
 				8795C89A29AE1D32007868B3 /* HomeNavigationStackView.swift in Sources */,
+				8716F52529BF84A000746394 /* MatchView.swift in Sources */,
 				87C33AA529AFBFB3005FC13A /* RegistrationController.swift in Sources */,
 				87D1C18F29B1C9B600AC6810 /* Service.swift in Sources */,
 				87AE35C629BDD21E00AF2FC9 /* ProfileViewModel.swift in Sources */,
 				8795C89329AE0FAA007868B3 /* HomeController.swift in Sources */,
 				87C33AA729AFCA4D005FC13A /* CustomTextField.swift in Sources */,
+				8716F52B29C0619E00746394 /* MatchViewViewModel.swift in Sources */,
 				87D1C1B729B5F9C900AC6810 /* SettingsCell.swift in Sources */,
 				8795C89829AE1C00007868B3 /* Extensions.swift in Sources */,
 				87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */,
 				87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
+				8716F52929BF953E00746394 /* KeepSwipingButton.swift in Sources */,
 				87E9484829BB975A00A72742 /* ProfileCell.swift in Sources */,
+				8716F52729BF953100746394 /* SendMessageButton.swift in Sources */,
 				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
 				87D1C1B929B5FB4A00AC6810 /* SettingsViewModel.swift in Sources */,
 			);

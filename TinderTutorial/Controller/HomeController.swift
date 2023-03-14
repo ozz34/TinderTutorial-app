@@ -72,6 +72,19 @@ class HomeController: UIViewController {
         }
     }
     
+    func saveSwipeAndCheckForMatch(forUser user: User, didLike: Bool) {
+        Service.saveSwipe(forUser: user, isLike: didLike) { _ in
+            self.topCardView = self.cardViews.last
+            
+            guard didLike == true else { return }
+            Service.checkIfMatchExist(forUser: user) { didMatch in
+                if didMatch == didLike {
+                    self.presentMatchView(forUser: user)
+                }
+            }
+        }
+    }
+    
     // MARK: - Helpers
     func configureCards() {
         viewModels.forEach { viewModel in
@@ -115,9 +128,22 @@ class HomeController: UIViewController {
         }
     }
     
+    func presentMatchView(forUser user: User) {
+        guard let currentUser = self.user else { return }
+        let viewModel = MatchViewViewModel(currentUser: currentUser, matchedUser: user)
+        let matchView = MatchView(viewModel: viewModel)
+        matchView.delegate = self
+        view.addSubview(matchView)
+        matchView.fillSuperview()
+    }
+    
     func performSwipeAnimation(shouldLike: Bool) {
         let translation: CGFloat = shouldLike ? 700 : -700
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut) {
+        UIView.animate(withDuration: 1.0,
+                       delay: 0,
+                       usingSpringWithDamping: 0.6,
+                       initialSpringVelocity: 0.1,
+                       options: .curveEaseOut) {
             self.topCardView?.frame = CGRect(x: translation, y: 0,
                                              width: (self.topCardView?.frame.width)!,
                                              height: (self.topCardView?.frame.height)!)
@@ -164,7 +190,7 @@ extension HomeController: CardViewDelegate {
         self.cardViews.removeLast()
         
         guard let user = topCardView?.viewModel.user else { return }
-        Service.saveSwipe(forUser: user, isLike: didLikeUser)
+        saveSwipeAndCheckForMatch(forUser: user, didLike: didLikeUser)
         self.topCardView = cardViews.last
     }
     
@@ -181,14 +207,13 @@ extension HomeController: BottomControlsStackViewDelegate {
     func handleLike() {
         guard let topCard = topCardView else { return }
         performSwipeAnimation(shouldLike: true)
-        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: true)
-     
+        saveSwipeAndCheckForMatch(forUser: topCard.viewModel.user, didLike: true)
     }
     
     func handleDislike() {
         guard let topCard = topCardView else { return }
         performSwipeAnimation(shouldLike: false)
-        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false, completion: nil)
     }
     
     func handleRefresh() {
@@ -201,14 +226,14 @@ extension HomeController: ProfileControllerDelegate {
     func profileController(_ controller: ProfileController, didLikeUser user: User) {
         controller.dismiss(animated: true) {
             self.performSwipeAnimation(shouldLike: true)
-            Service.saveSwipe(forUser: user, isLike: true)
+            self.saveSwipeAndCheckForMatch(forUser: user, didLike: true)
         }
     }
     
     func profileController(_ controller: ProfileController, didDislikeUser user: User) {
         controller.dismiss(animated: true) {
             self.performSwipeAnimation(shouldLike: false)
-            Service.saveSwipe(forUser: user, isLike: false)
+            Service.saveSwipe(forUser: user, isLike: false, completion: nil)
         }
     }
 }
@@ -218,5 +243,11 @@ extension HomeController: AuthenticationDelegate {
     func authenticationComplete() {
         dismiss(animated: true)
         fetchCurrentUserAndCards()
+    }
+}
+
+extension HomeController: MatchViewDelegate {
+    func matchView(_ view: MatchView, wantsToSendMessageTo user: User) {
+        print(user.name)
     }
 }
