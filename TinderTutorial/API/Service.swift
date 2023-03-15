@@ -23,7 +23,9 @@ struct Service {
         COLLECTION_USERS.document(user.uid).setData(data, completion: completion)
     }
     
-    static func saveSwipe(forUser user: User, isLike: Bool, completion: ((Error?)-> Void)?) {
+    static func saveSwipe(forUser user: User,
+                          isLike: Bool,
+                          completion: ((Error?)-> Void)?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
        
         COLLECTION_SWIPES.document(uid).getDocument { (snapshot, error) in
@@ -38,7 +40,8 @@ struct Service {
     }
     
     // MARK: - Upload
-    static func uploadImage(image: UIImage, completion: @escaping(String)-> Void) {
+    static func uploadImage(image: UIImage,
+                            completion: @escaping(String)-> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.7) else { return }
         let fileName = NSUUID().uuidString
         let ref = Storage.storage().reference(withPath: "/images/\(fileName)")
@@ -97,7 +100,6 @@ struct Service {
     static func fetchUser(withUid uid: String, completion: @escaping (User) -> Void) {
         COLLECTION_USERS.document(uid).getDocument { (snapshot, error) in
             guard let dictionary = snapshot?.data() else { return }
-            
             let user = User(dictionary: dictionary)
             completion(user)
         }
@@ -120,7 +122,6 @@ struct Service {
         
         COLLECTION_MATCHES_MESSAGES.document(uid).collection("matches").getDocuments { (snapshot, error) in
             guard let data = snapshot else { return }
-            
             let matches = data.documents.map { Match(dictionary: $0.data()) }
             completion(matches)
         }

@@ -7,11 +7,10 @@
 
 import UIKit
 
-class MessagesController: UITableViewController {
+final class MessagesController: UITableViewController {
     // MARK: - Properties
     private let user: User
     private let identifier = "MessageCell"
-    
     private let headerView = MatchHeader()
     
     // MARK: - Lifecycle
@@ -35,15 +34,16 @@ class MessagesController: UITableViewController {
     @objc func handleDismissal() {
         dismiss(animated: true)
     }
+   
     // MARK: - API
-    func fetchMatches() {
+    private func fetchMatches() {
         Service.fetchMatches { matches in
             self.headerView.matches = matches
         }
     }
     
     // MARK: - Helpers
-    func configureTableView() {
+    private func configureTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
         tableView.rowHeight = 50
         tableView.tableFooterView = UIView()
@@ -57,11 +57,12 @@ class MessagesController: UITableViewController {
     }
 
     
-    func configureNavigationBar() {
+    private func configureNavigationBar() {
         let leftButton = UIImageView()
         leftButton.setDimensions(height: 28,width: 28)
         leftButton.isUserInteractionEnabled = true
-        leftButton.image = UIImage(named: "app_icon")?.withRenderingMode(.alwaysTemplate)
+        leftButton.image = UIImage(named: "app_icon")?
+            .withRenderingMode(.alwaysTemplate)
         leftButton.tintColor = .lightGray
         
         let tap = UITapGestureRecognizer(target: self,
@@ -77,8 +78,6 @@ class MessagesController: UITableViewController {
     }
 }
 
-
-
 // MARK: - UITableViewDataSource
 extension MessagesController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,8 +85,7 @@ extension MessagesController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) 
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         return cell
     }
 }

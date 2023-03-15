@@ -15,23 +15,22 @@ protocol SettingsCellDelegate: AnyObject {
                       wantsToUpdateAgeRangeWith sender: UISlider)
 }
 
-class SettingsCell: UITableViewCell {
+final class SettingsCell: UITableViewCell {
     // MARK: - Properties
     var viewModel: SettingsViewModel! {
         didSet {
             configureUI()
         }
     }
-    
     weak var delegate: SettingsCellDelegate?
     
-    lazy var inputField: UITextField = {
+    private lazy var inputField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .none
         tf.font = UIFont.systemFont(ofSize: 16)
         
         let paddingView = UIView()
-        paddingView.setDimensions(height: 50, width: 28)
+        paddingView.setDimensions(height: 50, width: 20)
         tf.leftView = paddingView
         tf.leftViewMode = .always
        
@@ -42,13 +41,13 @@ class SettingsCell: UITableViewCell {
         return tf
     }()
     
-    var sliderStack = UIStackView()
+    private var sliderStack = UIStackView()
     
-    let minAgeLabel = UILabel()
-    let maxAgeLabel = UILabel()
+    private let minAgeLabel = UILabel()
+    private let maxAgeLabel = UILabel()
     
+    private lazy var maxAgeSlider = createAgeRangeSlider()
     lazy var minAgeSlider = createAgeRangeSlider()
-    lazy var maxAgeSlider = createAgeRangeSlider()
     
     // MARK: - Lyfecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -73,10 +72,13 @@ class SettingsCell: UITableViewCell {
         sliderStack.spacing = 16
         
         contentView.addSubview(sliderStack)
-        sliderStack.centerX(inView: self)
-        sliderStack.anchor(left: leftAnchor,
+        sliderStack.anchor(top: topAnchor,
+                           left: leftAnchor,
+                           bottom: bottomAnchor,
                            right: rightAnchor,
+                           paddingTop: 15,
                            paddingLeft: 24,
+                           paddingBottom: 15,
                            paddingRight: 24)
     }
     required init?(coder: NSCoder) {
@@ -101,7 +103,7 @@ class SettingsCell: UITableViewCell {
     }
     
     //MARK: - Helpers
-    func createAgeRangeSlider() -> UISlider {
+    private func createAgeRangeSlider() -> UISlider {
         let slider = UISlider()
         slider.minimumValue = 18
         slider.maximumValue = 60
@@ -112,7 +114,7 @@ class SettingsCell: UITableViewCell {
         return slider
     }
     
-    func configureUI() {
+    private func configureUI() {
         inputField.isHidden = viewModel.shouldHideInputField
         sliderStack.isHidden = viewModel.shouldHideSlider
         

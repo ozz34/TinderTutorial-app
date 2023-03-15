@@ -7,15 +7,17 @@
 
 import UIKit
 
+// MARK: - MatchViewDelegate
 protocol MatchViewDelegate: AnyObject {
     func matchView(_ view: MatchView, wantsToSendMessageTo user: User)
 }
 
-class MatchView: UIView {
+final class MatchView: UIView {
     // MARK: - Properties
-    private let viewModel: MatchViewViewModel
     weak var delegate: MatchViewDelegate?
     
+    private let viewModel: MatchViewViewModel
+   
     private let matchImageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "itsamatch"))
         iv.contentMode = .scaleAspectFill
@@ -117,13 +119,13 @@ class MatchView: UIView {
     }
 
     // MARK: - Helpers
-    func loadUserData() {
+    private func loadUserData() {
         descriptionLabel.text = viewModel.matchLabelText
         currentUserImageView.sd_setImage(with: viewModel.currentUserImageUrl)
         matchedUserImageView.sd_setImage(with: viewModel.matchedUserImageUrl)
     }
     
-    func configureUI() {
+    private func configureUI() {
         views.forEach { view in
             addSubview(view)
             view.alpha = 0
@@ -167,7 +169,7 @@ class MatchView: UIView {
     
     }
     
-    func configureAnimations() {
+    private func configureAnimations() {
         views.forEach { $0.alpha = 1 }
         
         let angle = 30 * CGFloat.pi / 180
@@ -202,8 +204,9 @@ class MatchView: UIView {
         }
     }
     
-    func configureBlurView() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissal))
+    private func configureBlurView() {
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(handleDismissal))
         visualEffectView.addGestureRecognizer(tap)
         
         addSubview(visualEffectView)

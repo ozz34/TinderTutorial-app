@@ -8,25 +8,24 @@
 import UIKit
 import Firebase
 
-class HomeController: UIViewController {
+final class HomeController: UIViewController {
     // MARK: - Properties
     private var user: User?
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
     private var topCardView: CardView?
     private var cardViews = [CardView]()
+    private let activity = UIActivityIndicatorView(style: .medium)
     
     private var viewModels = [CardViewModel]() {
         didSet {
             configureCards()
         }
     }
-    
     private let deckView: UIView = {
        let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
-        
         return view
     }()
 
@@ -39,7 +38,7 @@ class HomeController: UIViewController {
     }
     
     // MARK: - API
-    func fetchUsers(forCurrentUser user: User) {
+    private func fetchUsers(forCurrentUser user: User) {
         Service.fetchUsers(forCurrentUser: user) { users in
             self.viewModels = users.map {
                 CardViewModel(user: $0)
@@ -47,7 +46,7 @@ class HomeController: UIViewController {
         }
     }
     
-    func fetchCurrentUserAndCards() {
+    private func fetchCurrentUserAndCards() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
             self.user = user
@@ -55,7 +54,7 @@ class HomeController: UIViewController {
         }
     }
     
-    func checkIsUserIsLoggedIn() {
+    private func checkIsUserIsLoggedIn() {
         if Auth.auth().currentUser == nil {
             presentLoginController()
         } else {
@@ -63,7 +62,7 @@ class HomeController: UIViewController {
         }
     }
     
-    func logout() {
+    private func logout() {
         do {
             try Auth.auth().signOut()
             presentLoginController()
@@ -72,7 +71,7 @@ class HomeController: UIViewController {
         }
     }
     
-    func saveSwipeAndCheckForMatch(forUser user: User, didLike: Bool) {
+    private func saveSwipeAndCheckForMatch(forUser user: User, didLike: Bool) {
         Service.saveSwipe(forUser: user, isLike: didLike) { _ in
             self.topCardView = self.cardViews.last
             
@@ -89,7 +88,7 @@ class HomeController: UIViewController {
     }
     
     // MARK: - Helpers
-    func configureCards() {
+    private func configureCards() {
         viewModels.forEach { viewModel in
             let cardView = CardView(viewModel: viewModel)
             cardView.delegate = self
@@ -100,7 +99,7 @@ class HomeController: UIViewController {
         topCardView = cardViews.last
     }
     
-    func configureUI() {
+    private func configureUI() {
         view.backgroundColor = .white
         
         topStack.delegate = self
@@ -119,9 +118,14 @@ class HomeController: UIViewController {
         stack.isLayoutMarginsRelativeArrangement = true
         stack.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         stack.bringSubviewToFront(deckView)
+        
+        view.addSubview(activity)
+        activity.centerX(inView: view)
+        activity.centerY(inView: view)
+        activity.hidesWhenStopped = true
     }
     
-    func presentLoginController() {
+    private func presentLoginController() {
         DispatchQueue.main.async {
             let controller = LoginController()
             controller.delegate = self
@@ -131,7 +135,7 @@ class HomeController: UIViewController {
         }
     }
     
-    func presentMatchView(forUser user: User) {
+    private func presentMatchView(forUser user: User) {
         guard let currentUser = self.user else { return }
         let viewModel = MatchViewViewModel(currentUser: currentUser, matchedUser: user)
         let matchView = MatchView(viewModel: viewModel)
@@ -140,7 +144,7 @@ class HomeController: UIViewController {
         matchView.fillSuperview()
     }
     
-    func performSwipeAnimation(shouldLike: Bool) {
+    private func performSwipeAnimation(shouldLike: Bool) {
         let translation: CGFloat = shouldLike ? 700 : -700
         UIView.animate(withDuration: 1.0,
                        delay: 0,
@@ -151,7 +155,7 @@ class HomeController: UIViewController {
                                              width: (self.topCardView?.frame.width)!,
                                              height: (self.topCardView?.frame.height)!)
         } completion: { _ in
-           // guard !self.cardViews.isEmpty else { return }
+            guard !self.cardViews.isEmpty else { return }
             self.topCardView?.removeFromSuperview()
             self.cardViews.removeLast()
             self.topCardView = self.cardViews.last
@@ -224,7 +228,16 @@ extension HomeController: BottomControlsStackViewDelegate {
     }
     
     func handleRefresh() {
-        print("refresh")
+        guard let user = self.user else { return }
+        activity.startAnimating()
+
+        Service.fetchUsers(forCurrentUser: user) { users in
+            let refreshViewModels = users.map { CardViewModel(user: $0) }
+            if self.viewModels.count != refreshViewModels.count {
+                self.viewModels = refreshViewModels
+            }
+            self.activity.stopAnimating()
+        }
     }
 }
 
@@ -252,9 +265,9 @@ extension HomeController: AuthenticationDelegate {
         fetchCurrentUserAndCards()
     }
 }
-
+// MARK: - MatchViewDelegate
 extension HomeController: MatchViewDelegate {
     func matchView(_ view: MatchView, wantsToSendMessageTo user: User) {
-        print(user.name)
+        print("Send message to: \(user.name)")
     }
 }

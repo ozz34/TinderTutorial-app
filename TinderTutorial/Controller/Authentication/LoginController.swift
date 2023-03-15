@@ -6,22 +6,23 @@
 //
 
 import UIKit
+import JGProgressHUD
 
+// MARK: - AuthenticationDelegate
 protocol AuthenticationDelegate: AnyObject {
     func authenticationComplete()
 }
 
-class LoginController: UIViewController {
+final class LoginController: UIViewController {
     // MARK: - Properties
-    
-    private var viewModel = LoginViewModel()
     weak var delegate: AuthenticationDelegate?
     
+    private var viewModel = LoginViewModel()
+
     private let iconImageView: UIImageView = {
        let iv = UIImageView()
         iv.image = UIImage(named: "app_icon")?.withRenderingMode(.alwaysTemplate)
         iv.tintColor = .white
-        
         return iv
     }()
     
@@ -29,12 +30,14 @@ class LoginController: UIViewController {
     private let passwordTextField = CustomTextField(placeholder: "Password",
                                                     isSecureTextEntry: true)
     
-    private lazy var authButton = {
-        let button = AuthButton(title: "Log In", type: .system)
+    private lazy var authButton: AuthButton = {
+        let button = AuthButton(type: .system)
+        button.setTitle("Log In", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+    
         button.addTarget(self,
                          action: #selector(handleLogin),
                          for: .touchUpInside)
-        
         return button
     }()
      
@@ -50,7 +53,6 @@ class LoginController: UIViewController {
         button.addTarget(self,
                          action: #selector(handleShowRegistration),
                          for: .touchUpInside)
-        
         return button
     }()
     
@@ -65,10 +67,17 @@ class LoginController: UIViewController {
     @objc func handleLogin() {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
+        
+        let hud = JGProgressHUD(style: .dark)
+        hud.show(in: view)
+        
         AuthService.logUserIn(withEmail: email, password: password) { (result, error) in
             if let error {
                 print("Debug: Error logging user in \(error.localizedDescription)")
+                hud.dismiss()
+                return
             }
+            hud.dismiss()
             self.delegate?.authenticationComplete()
         }
     }
@@ -89,7 +98,7 @@ class LoginController: UIViewController {
     }
     
     // MARK: - Helpers
-    func configureUI() {
+    private func configureUI() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
         
@@ -122,7 +131,7 @@ class LoginController: UIViewController {
                                       paddingRight: 32)
     }
     
-    func configureTextFieldObservers() {
+    private func configureTextFieldObservers() {
         emailTextField.addTarget(self,
                                  action: #selector(textDidChange),
                                  for: .editingChanged)
@@ -131,7 +140,7 @@ class LoginController: UIViewController {
                                  for: .editingChanged)
     }
     
-    func checkFormStatus() {
+    private func checkFormStatus() {
         if viewModel.formIsValid {
             authButton.isEnabled = true
             authButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
@@ -141,4 +150,3 @@ class LoginController: UIViewController {
         }
     }
 }
-                                      

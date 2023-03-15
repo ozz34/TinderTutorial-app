@@ -163,6 +163,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8716F55429C1B08300746394 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				8716F54E29C0997E00746394 /* MatchCell.swift */,
+				8716F54C29C095CC00746394 /* MatchHeader.swift */,
+				8716F52429BF84A000746394 /* MatchView.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
+		8716F55529C1B0AF00746394 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				8716F52A29C0619E00746394 /* MatchViewViewModel.swift */,
+				8716F55229C0E50100746394 /* MatchCellViewModel.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
 		8795C86829AE0E5F007868B3 = {
 			isa = PBXGroup;
 			children = (
@@ -231,12 +250,11 @@
 		8795C88E29AE0EC1007868B3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8716F55529C1B0AF00746394 /* Match */,
 				87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */,
 				87C33AAA29B0AB76005FC13A /* AuthenticationViewModel.swift */,
 				87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */,
 				87AE35C529BDD21E00AF2FC9 /* ProfileViewModel.swift */,
-				8716F52A29C0619E00746394 /* MatchViewViewModel.swift */,
-				8716F55229C0E50100746394 /* MatchCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -244,17 +262,15 @@
 		8795C88F29AE0EC5007868B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8716F55429C1B08300746394 /* Match */,
 				87F76DE629BB5A0F00123499 /* Settings */,
 				8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */,
 				8795C89B29AE2BF3007868B3 /* BottomControlsStackView.swift */,
 				87C33A9929AF5C87005FC13A /* CardView.swift */,
 				87E9484729BB975A00A72742 /* ProfileCell.swift */,
 				87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */,
-				8716F52429BF84A000746394 /* MatchView.swift */,
 				8716F52629BF953100746394 /* SendMessageButton.swift */,
 				8716F52829BF953E00746394 /* KeepSwipingButton.swift */,
-				8716F54C29C095CC00746394 /* MatchHeader.swift */,
-				8716F54E29C0997E00746394 /* MatchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

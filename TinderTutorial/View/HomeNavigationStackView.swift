@@ -7,27 +7,30 @@
 
 import UIKit
 
+// MARK: - HomeNavigationStackViewDelegate
 protocol HomeNavigationStackViewDelegate: AnyObject {
     func showSettings()
     func showMessages()
 }
 
-class HomeNavigationStackView: UIStackView {
+final class HomeNavigationStackView: UIStackView {
     // MARK: - Properties
-    let settingsButton = UIButton(type: .system)
-    let messageButton = UIButton(type: .system)
-    let tinderIcon = UIImageView(image: #imageLiteral(resourceName: "app_icon"))
-    
     weak var delegate: HomeNavigationStackViewDelegate?
     
+    private let settingsButton = UIButton(type: .system)
+    private let messageButton = UIButton(type: .system)
+    private let tinderIcon = UIImageView(image: #imageLiteral(resourceName: "app_icon"))
+
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         heightAnchor.constraint(equalToConstant: 80).isActive = true
         tinderIcon.contentMode = .scaleAspectFit
         
-        settingsButton.setImage(UIImage(named: "top_left_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        messageButton.setImage(UIImage(named: "top_right_messages")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        settingsButton.setImage(UIImage(named: "top_left_profile")?
+            .withRenderingMode(.alwaysOriginal), for: .normal)
+        messageButton.setImage(UIImage(named: "top_right_messages")?
+            .withRenderingMode(.alwaysOriginal), for: .normal)
         
         [settingsButton,
          UIView(),
@@ -62,4 +65,3 @@ class HomeNavigationStackView: UIStackView {
         delegate?.showMessages()
     }
 }
-

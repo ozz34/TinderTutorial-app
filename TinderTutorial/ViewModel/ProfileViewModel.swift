@@ -8,20 +8,20 @@
 import UIKit
 
 struct ProfileViewModel {
-    private let user: User
-    
-    var imageCount: Int {
-        user.imageURLs.count
-    }
-    
-    var imageURLs: [URL?] {
-        user.imageURLs.map {URL(string: $0)}
-    }
-    
+    // MARK: - Properties
     let userDetailsAttributedString: NSAttributedString
     let profession: String
     let bio: String
     
+    private let user: User
+   
+    var imageCount: Int {
+        user.imageURLs.count
+    }
+    var imageURLs: [URL?] {
+        user.imageURLs.map {URL(string: $0)}
+    }
+    // MARK: - Lifecycle
     init(user: User) {
         self.user = user
         

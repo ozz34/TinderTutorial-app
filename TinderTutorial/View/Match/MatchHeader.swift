@@ -7,20 +7,21 @@
 
 import UIKit
 
+// MARK: - MatchHeaderDelegate
 protocol MatchHeaderDelegate: AnyObject {
     func matchHeader(_ header: MatchHeader, wantsToStartChatWith uid: String)
 }
 
-class MatchHeader: UICollectionReusableView {
+final class MatchHeader: UICollectionReusableView {
     // MARK: - Properties
-    private let identifier = "MatchCell"
     var matches = [Match]() {
         didSet {
             collectionView.reloadData()
         }
     }
-    
     weak var delegate: MatchHeaderDelegate?
+   
+    private let identifier = "MatchCell"
     
     private let newMatchesLabel: UILabel = {
         let label = UILabel()
@@ -70,11 +71,13 @@ class MatchHeader: UICollectionReusableView {
 }
 // MARK: - UICollectionViewDataSource
 extension MatchHeader: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         matches.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? MatchCell else { return UICollectionViewCell() }
         cell.viewModel = MatchCellViewModel(match: matches[indexPath.row])
         
@@ -84,7 +87,8 @@ extension MatchHeader: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension MatchHeader: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         let uid = matches[indexPath.row].uid
         delegate?.matchHeader(self, wantsToStartChatWith: uid)
     }
@@ -92,7 +96,9 @@ extension MatchHeader: UICollectionViewDelegate {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MatchHeader: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 88, height: 124)
     }
 }

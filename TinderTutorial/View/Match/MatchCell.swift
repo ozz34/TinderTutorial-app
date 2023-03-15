@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MatchCell: UICollectionViewCell {
+final class MatchCell: UICollectionViewCell {
     // MARK: - Properties
     var viewModel: MatchCellViewModel! {
         didSet {
