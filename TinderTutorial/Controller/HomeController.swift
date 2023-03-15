@@ -39,8 +39,8 @@ final class HomeController: UIViewController {
     
     // MARK: - API
     private func fetchUsers(forCurrentUser user: User) {
-        Service.fetchUsers(forCurrentUser: user) { users in
-            self.viewModels = users.map {
+        Service.fetchUsers(forCurrentUser: user) { [weak self] users in
+            self?.viewModels = users.map {
                 CardViewModel(user: $0)
             }
         }
@@ -48,9 +48,9 @@ final class HomeController: UIViewController {
     
     private func fetchCurrentUserAndCards() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Service.fetchUser(withUid: uid) { user in
-            self.user = user
-            self.fetchUsers(forCurrentUser: user)
+        Service.fetchUser(withUid: uid) { [weak self] user in
+            self?.user = user
+            self?.fetchUsers(forCurrentUser: user)
         }
     }
     
@@ -72,15 +72,15 @@ final class HomeController: UIViewController {
     }
     
     private func saveSwipeAndCheckForMatch(forUser user: User, didLike: Bool) {
-        Service.saveSwipe(forUser: user, isLike: didLike) { _ in
-            self.topCardView = self.cardViews.last
+        Service.saveSwipe(forUser: user, isLike: didLike) { [weak self] _ in
+            self?.topCardView = self?.cardViews.last
             
             guard didLike == true else { return }
-            Service.checkIfMatchExist(forUser: user) { didMatch in
+            Service.checkIfMatchExist(forUser: user) { [weak self] didMatch in
                 if didMatch == didLike {
-                    self.presentMatchView(forUser: user)
+                    self?.presentMatchView(forUser: user)
                     
-                    guard let currentUser = self.user else { return }
+                    guard let currentUser = self?.user else { return }
                     Service.uploadMatch(currentUser: currentUser, matchedUser: user)
                 }
             }
@@ -231,12 +231,12 @@ extension HomeController: BottomControlsStackViewDelegate {
         guard let user = self.user else { return }
         activity.startAnimating()
 
-        Service.fetchUsers(forCurrentUser: user) { users in
+        Service.fetchUsers(forCurrentUser: user) { [weak self] users in
             let refreshViewModels = users.map { CardViewModel(user: $0) }
-            if self.viewModels.count != refreshViewModels.count {
-                self.viewModels = refreshViewModels
+            if self?.viewModels.count != refreshViewModels.count {
+                self?.viewModels = refreshViewModels
             }
-            self.activity.stopAnimating()
+            self?.activity.stopAnimating()
         }
     }
 }

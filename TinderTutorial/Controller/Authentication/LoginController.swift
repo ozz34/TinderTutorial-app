@@ -71,14 +71,14 @@ final class LoginController: UIViewController {
         let hud = JGProgressHUD(style: .dark)
         hud.show(in: view)
         
-        AuthService.logUserIn(withEmail: email, password: password) { (result, error) in
+        AuthService.logUserIn(withEmail: email, password: password) { [weak self] (result, error) in
             if let error {
                 print("Debug: Error logging user in \(error.localizedDescription)")
                 hud.dismiss()
                 return
             }
             hud.dismiss()
-            self.delegate?.authenticationComplete()
+            self?.delegate?.authenticationComplete()
         }
     }
     

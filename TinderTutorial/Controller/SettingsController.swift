@@ -62,8 +62,8 @@ final class SettingsController: UITableViewController {
         hud.textLabel.text = "Saving Image"
         hud.show(in: view)
         
-        Service.uploadImage(image: image) { imageUrl in
-            self.user.imageURLs.append(imageUrl)
+        Service.uploadImage(image: image) { [weak self] imageUrl in
+            self?.user.imageURLs.append(imageUrl)
             hud.dismiss()
         }
     }
