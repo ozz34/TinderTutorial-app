@@ -7,17 +7,15 @@
 
 import UIKit
 
-class ProfileCell: UICollectionViewCell {
-    // MARK: - Properties
-    
-    let imageView = UIImageView()
+final class ProfileCell: UICollectionViewCell {
+   // MARK: - Properties
+   let imageView = UIImageView()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         imageView.contentMode = .scaleAspectFill
-        
         addSubview(imageView)
         imageView.fillSuperview()
     }

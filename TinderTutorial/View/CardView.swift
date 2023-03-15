@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - CardViewDelegate
 protocol CardViewDelegate: AnyObject {
     func cardView(_ view: CardView, wantsToShowProfileFor user: User)
     func cardView(_ view: CardView, didLikeUser: Bool)
@@ -17,20 +18,17 @@ enum SwipeDirection: Int {
     case right = 1
 }
 
-class CardView: UIView {
+final class CardView: UIView {
     // MARK: - Properties
+    var viewModel: CardViewModel
     weak var delegate: CardViewDelegate?
     
     private let gradientLayer = CAGradientLayer()
-    
     private lazy var barStackView = SegmentedBarView(numberOfSegments: viewModel.imageURLs.count)
-    
-    var viewModel: CardViewModel
-    
+
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        
         return iv
     }()
     
@@ -38,18 +36,16 @@ class CardView: UIView {
         let label = UILabel()
         label.numberOfLines = 2
         label.attributedText = viewModel.userInfoText
-        
         return label
     }()
     
     private lazy var infoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "info_icon")?.withRenderingMode(.alwaysOriginal),
-                        for: .normal)
+        button.setImage(UIImage(named: "info_icon")?
+            .withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self,
                          action: #selector(handleShowProfile),
                          for: .touchUpInside)
-        
         return button
     }()
     
@@ -117,7 +113,6 @@ class CardView: UIView {
         } else {
             viewModel.showPreviousPhoto()
         }
-        //        imageView.image = viewModel.imageToShow
         imageView.sd_setImage(with: viewModel.imageUrl)
         
         barStackView.setHighlighted(index: viewModel.index)
@@ -136,7 +131,7 @@ class CardView: UIView {
         self.transform = rotationTranform.translatedBy(x: translation.x, y: translation.y)
     }
     
-    func resetCardPosition(sender: UIPanGestureRecognizer) {
+    private func resetCardPosition(sender: UIPanGestureRecognizer) {
         let direction: SwipeDirection = sender.translation(in: nil).x > 100 ? .right : .left
         let shouldDismissCard = abs(sender.translation(in: nil).x) > 100
         
@@ -160,22 +155,24 @@ class CardView: UIView {
         }
     }
     
-    func configureGradientLayer() {
+    private func configureGradientLayer() {
         gradientLayer.colors = [UIColor.clear.cgColor,
                                 UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1.1]
         layer.addSublayer(gradientLayer)
     }
     
-    func configureGestureRecognizers() {
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+    private func configureGestureRecognizers() {
+        let pan = UIPanGestureRecognizer(target: self,
+                                         action: #selector(handlePanGesture))
         addGestureRecognizer(pan)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleChangePhoto))
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(handleChangePhoto))
         addGestureRecognizer(tap)
     }
     
-    func configureBarStackView() {
+    private func configureBarStackView() {
         addSubview(barStackView)
         barStackView.anchor(top: topAnchor,
                             left: leftAnchor,

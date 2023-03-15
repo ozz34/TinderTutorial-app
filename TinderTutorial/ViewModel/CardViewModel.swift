@@ -8,30 +8,32 @@
 import UIKit
 
 struct CardViewModel {
+    // MARK: - Properties
     let user: User
     let imageURLs: [String]
     let userInfoText: NSAttributedString
+    var imageUrl: URL?
+    
     private var imageIndex = 0
+    
     var index: Int {
         imageIndex
     }
-    var imageUrl: URL?
-    
+    // MARK: - Lifecycle
     init(user: User) {
         self.user = user
         self.imageURLs = user.imageURLs
         
         let attributedText = NSMutableAttributedString(string: user.name,
                                                        attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy),.foregroundColor: UIColor.white])
-        attributedText.append(NSAttributedString(string: "  \(user.age)", attributes: [.font: UIFont.systemFont(ofSize: 24),.foregroundColor: UIColor.white]))
+        attributedText.append(NSAttributedString(string: "  \(user.age)", attributes:
+                                                    [.font: UIFont.systemFont(ofSize: 24),.foregroundColor: UIColor.white]))
         
         userInfoText = attributedText
-        
-//        self.imageUrl = URL(string: user.profileImageUrl)
-        
         imageUrl = URL(string: self.imageURLs[0])
     }
     
+    // MARK: - Helpers
     mutating func showNextPhoto() {
         guard imageIndex < imageURLs.count - 1 else { return }
         imageIndex += 1

@@ -26,11 +26,12 @@ enum SettingsSections: Int, CaseIterable {
 }
 
 struct SettingsViewModel {
-    private let user: User
+    // MARK: - Properties
     let section: SettingsSections
-    
     let placeholderText: String
     var value: String?
+    
+    private let user: User
     
     var shouldHideInputField: Bool {
         section == .ageRange
@@ -38,19 +39,9 @@ struct SettingsViewModel {
     var shouldHideSlider: Bool {
         section != .ageRange
     }
-    
-    func minAgeLabelText(forValue value: Float) -> String {
-        "Min: \(Int(value))"
-    }
-    
-    func maxAgeLabelText(forValue value: Float) -> String {
-        "Max: \(Int(value))"
-    }
-    
     var minAgeSliderValue: Float {
         Float(user.minSeekingAge)
     }
-    
     var maxAgeSliderValue: Float {
         Float(user.maxSeekingAge)
     }
@@ -73,5 +64,14 @@ struct SettingsViewModel {
         case .ageRange:
                 break
         }
+    }
+    
+    // MARK: - Helpers
+    func minAgeLabelText(forValue value: Float) -> String {
+        "Min: \(Int(value))"
+    }
+    
+    func maxAgeLabelText(forValue value: Float) -> String {
+        "Max: \(Int(value))"
     }
 }

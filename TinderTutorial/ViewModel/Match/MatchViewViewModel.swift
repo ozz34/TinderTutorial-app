@@ -8,14 +8,15 @@
 import Foundation
 
 struct MatchViewViewModel {
-    private let currentUser: User
+    // MARK: - Properties
     let matchedUser: User
-    
     let matchLabelText: String
-    
     var currentUserImageUrl: URL?
     var matchedUserImageUrl: URL?
     
+    private let currentUser: User
+    
+    // MARK: - Lifecycle
     init(currentUser: User, matchedUser: User) {
         self.currentUser = currentUser
         self.matchedUser = matchedUser

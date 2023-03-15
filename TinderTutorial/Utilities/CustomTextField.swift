@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTextField: UITextField {
+final class CustomTextField: UITextField {
     // MARK: - Lifecycle
     init(placeholder: String, isSecureTextEntry: Bool = false) {
         super.init(frame: .zero)
@@ -21,7 +21,8 @@ class CustomTextField: UITextField {
         backgroundColor = UIColor(white: 1, alpha: 0.2)
         heightAnchor.constraint(equalToConstant: 50).isActive = true
         layer.cornerRadius = 5
-        attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor(white: 1, alpha: 0.7)])
+        attributedPlaceholder = NSAttributedString(string: placeholder,
+                                                   attributes: [.foregroundColor: UIColor(white: 1, alpha: 0.7)])
         self.isSecureTextEntry = isSecureTextEntry
         keyboardAppearance = .dark
         

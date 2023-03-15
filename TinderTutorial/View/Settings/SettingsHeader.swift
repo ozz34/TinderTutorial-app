@@ -12,7 +12,7 @@ protocol SettingsHeaderDelegate: AnyObject {
     func settingsHeader(_ header: SettingsHeader, didSelect index: Int)
 }
 
-class SettingsHeader: UIView {
+final class SettingsHeader: UIView {
     // MARK: - Properties
     private let user: User
     weak var delegate: SettingsHeaderDelegate?
@@ -71,11 +71,13 @@ class SettingsHeader: UIView {
     }
     
     // MARK: - Helpers
-    func createButton(_ index: Int) -> UIButton {
+    private func createButton(_ index: Int) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle("Select Photo", for: .normal)
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        button.addTarget(self,
+                         action: #selector(handleSelectPhoto),
+                         for: .touchUpInside)
         button.clipsToBounds = true
         button.backgroundColor = .white
         button.imageView?.contentMode = .scaleAspectFill
@@ -84,11 +86,12 @@ class SettingsHeader: UIView {
         return button
     }
     
-    func loadUserPhotos() {
+    private func loadUserPhotos() {
         let imageURLs = user.imageURLs.map { URL(string: $0) }
       
         for (index, url) in imageURLs.enumerated() {
-            SDWebImageManager.shared.loadImage(with: url, options: .continueInBackground, progress: nil) { (image, _, _, _, _, _) in
+            SDWebImageManager.shared.loadImage(with: url, options: .continueInBackground,
+                                               progress: nil) { (image, _, _, _, _, _) in
                 self.buttons[index].setImage(image?.withRenderingMode(.alwaysOriginal),
                                              for: .normal)
             }

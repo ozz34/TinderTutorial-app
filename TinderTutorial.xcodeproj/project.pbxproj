@@ -12,6 +12,11 @@
 		8716F52729BF953100746394 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52629BF953100746394 /* SendMessageButton.swift */; };
 		8716F52929BF953E00746394 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52829BF953E00746394 /* KeepSwipingButton.swift */; };
 		8716F52B29C0619E00746394 /* MatchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52A29C0619E00746394 /* MatchViewViewModel.swift */; };
+		8716F52D29C07FCD00746394 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F52C29C07FCD00746394 /* MessagesController.swift */; };
+		8716F54D29C095CC00746394 /* MatchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F54C29C095CC00746394 /* MatchHeader.swift */; };
+		8716F54F29C0997E00746394 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F54E29C0997E00746394 /* MatchCell.swift */; };
+		8716F55129C0A07800746394 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F55029C0A07800746394 /* Match.swift */; };
+		8716F55329C0E50100746394 /* MatchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8716F55229C0E50100746394 /* MatchCellViewModel.swift */; };
 		8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87429AE0E60007868B3 /* AppDelegate.swift */; };
 		8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795C87629AE0E60007868B3 /* SceneDelegate.swift */; };
 		8795C87C29AE0E60007868B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8795C87A29AE0E60007868B3 /* Main.storyboard */; };
@@ -79,6 +84,11 @@
 		8716F52629BF953100746394 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
 		8716F52829BF953E00746394 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		8716F52A29C0619E00746394 /* MatchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewViewModel.swift; sourceTree = "<group>"; };
+		8716F52C29C07FCD00746394 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
+		8716F54C29C095CC00746394 /* MatchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeader.swift; sourceTree = "<group>"; };
+		8716F54E29C0997E00746394 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		8716F55029C0A07800746394 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		8716F55229C0E50100746394 /* MatchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCellViewModel.swift; sourceTree = "<group>"; };
 		8795C87129AE0E60007868B3 /* TinderTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8795C87429AE0E60007868B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8795C87629AE0E60007868B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +163,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8716F55429C1B08300746394 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				8716F54E29C0997E00746394 /* MatchCell.swift */,
+				8716F54C29C095CC00746394 /* MatchHeader.swift */,
+				8716F52429BF84A000746394 /* MatchView.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
+		8716F55529C1B0AF00746394 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				8716F52A29C0619E00746394 /* MatchViewViewModel.swift */,
+				8716F55229C0E50100746394 /* MatchCellViewModel.swift */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
 		8795C86829AE0E5F007868B3 = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +242,7 @@
 				8795C89229AE0FAA007868B3 /* HomeController.swift */,
 				87D1C1B229B48C5300AC6810 /* SettingsController.swift */,
 				87E9484529BB91D800A72742 /* ProfileController.swift */,
+				8716F52C29C07FCD00746394 /* MessagesController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -220,11 +250,11 @@
 		8795C88E29AE0EC1007868B3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8716F55529C1B0AF00746394 /* Match */,
 				87C33A9D29AFA2AD005FC13A /* CardViewModel.swift */,
 				87C33AAA29B0AB76005FC13A /* AuthenticationViewModel.swift */,
 				87D1C1B829B5FB4A00AC6810 /* SettingsViewModel.swift */,
 				87AE35C529BDD21E00AF2FC9 /* ProfileViewModel.swift */,
-				8716F52A29C0619E00746394 /* MatchViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -232,13 +262,13 @@
 		8795C88F29AE0EC5007868B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8716F55429C1B08300746394 /* Match */,
 				87F76DE629BB5A0F00123499 /* Settings */,
 				8795C89929AE1D32007868B3 /* HomeNavigationStackView.swift */,
 				8795C89B29AE2BF3007868B3 /* BottomControlsStackView.swift */,
 				87C33A9929AF5C87005FC13A /* CardView.swift */,
 				87E9484729BB975A00A72742 /* ProfileCell.swift */,
 				87136F5329BE1DD400EDD326 /* SegmentedBarView.swift */,
-				8716F52429BF84A000746394 /* MatchView.swift */,
 				8716F52629BF953100746394 /* SendMessageButton.swift */,
 				8716F52829BF953E00746394 /* KeepSwipingButton.swift */,
 			);
@@ -249,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				87C33A9B29AFA13D005FC13A /* User.swift */,
+				8716F55029C0A07800746394 /* Match.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -410,6 +441,7 @@
 			files = (
 				87D1C1B329B48C5300AC6810 /* SettingsController.swift in Sources */,
 				87136F5429BE1DD400EDD326 /* SegmentedBarView.swift in Sources */,
+				8716F54D29C095CC00746394 /* MatchHeader.swift in Sources */,
 				87C33A9A29AF5C87005FC13A /* CardView.swift in Sources */,
 				87D1C1B129B2739F00AC6810 /* Constants.swift in Sources */,
 				87C33AA929B08E97005FC13A /* AuthButton.swift in Sources */,
@@ -417,6 +449,7 @@
 				87F76DE829BB5A1F00123499 /* SettingsFooter.swift in Sources */,
 				8795C89C29AE2BF3007868B3 /* BottomControlsStackView.swift in Sources */,
 				8795C87529AE0E60007868B3 /* AppDelegate.swift in Sources */,
+				8716F55329C0E50100746394 /* MatchCellViewModel.swift in Sources */,
 				8795C87729AE0E60007868B3 /* SceneDelegate.swift in Sources */,
 				87E9484629BB91D800A72742 /* ProfileController.swift in Sources */,
 				87C33A9C29AFA13D005FC13A /* User.swift in Sources */,
@@ -432,12 +465,15 @@
 				8795C89829AE1C00007868B3 /* Extensions.swift in Sources */,
 				87D1C1B529B4906600AC6810 /* SettingsHeader.swift in Sources */,
 				87D1C18D29B1C9A500AC6810 /* AuthService.swift in Sources */,
+				8716F55129C0A07800746394 /* Match.swift in Sources */,
 				87C33A9E29AFA2AD005FC13A /* CardViewModel.swift in Sources */,
 				8716F52929BF953E00746394 /* KeepSwipingButton.swift in Sources */,
 				87E9484829BB975A00A72742 /* ProfileCell.swift in Sources */,
 				8716F52729BF953100746394 /* SendMessageButton.swift in Sources */,
 				87C33AA129AFBF9C005FC13A /* LoginController.swift in Sources */,
+				8716F54F29C0997E00746394 /* MatchCell.swift in Sources */,
 				87D1C1B929B5FB4A00AC6810 /* SettingsViewModel.swift in Sources */,
+				8716F52D29C07FCD00746394 /* MessagesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import JGProgressHUD
 
-class RegistrationController: UIViewController {
+final class RegistrationController: UIViewController {
     // MARK: - Properties
-    private var viewModel = RegistrationViewModel()
     weak var delegate: AuthenticationDelegate?
+    
+    private var viewModel = RegistrationViewModel()
     
     private lazy var selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -31,12 +33,14 @@ class RegistrationController: UIViewController {
                                                     isSecureTextEntry: true)
     private var profileImage: UIImage?
     
-    private lazy var authButton = {
-        let button = AuthButton(title: "Sigh Up", type: .system)
+    private lazy var authButton: AuthButton = {
+        let button = AuthButton(type: .system)
+        button.setTitle("Sign Up", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        
         button.addTarget(self,
                          action: #selector(handleRegisterUser),
                          for: .touchUpInside)
-        
         return button
     }()
     
@@ -52,9 +56,9 @@ class RegistrationController: UIViewController {
         button.addTarget(self,
                          action: #selector(handleShowLogin),
                          for: .touchUpInside)
-        
         return button
     }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,14 +79,22 @@ class RegistrationController: UIViewController {
         guard let fullName = fullNameTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let profileImage = profileImage else { return }
+        
+        let hud = JGProgressHUD(style: .dark)
+        hud.show(in: view)
+        
         let authCredential = AuthCredentials(email: email,
                                              fullName: fullName,
                                              password: password,
                                              profileImage: profileImage)
+    
         AuthService.registerUser(withCredentials: authCredential) { error in
             if let error {
                 print("Debug: Error signing user up \(error.localizedDescription)")
+                hud.dismiss()
+                return
             }
+            hud.dismiss()
             self.delegate?.authenticationComplete()
         }
     }
@@ -103,7 +115,7 @@ class RegistrationController: UIViewController {
     }
     
     // MARK: - Helpers
-    func configureUI() {
+    private func configureUI() {
         configureGradientLayer()
         
         view.addSubview(selectPhotoButton)
@@ -136,7 +148,7 @@ class RegistrationController: UIViewController {
                                paddingRight: 32)
     }
     
-    func configureTextFieldObservers() {
+    private func configureTextFieldObservers() {
         emailTextField.addTarget(self,
                                  action: #selector(textDidChange),
                                  for: .editingChanged)
@@ -148,7 +160,7 @@ class RegistrationController: UIViewController {
                                  for: .editingChanged)
     }
     
-    func checkFormStatus() {
+    private func checkFormStatus() {
         if viewModel.formIsValid {
             authButton.isEnabled = true
             authButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)

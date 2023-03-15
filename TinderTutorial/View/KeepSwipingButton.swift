@@ -7,7 +7,8 @@
 
 import UIKit
 
-class KeepSwipingButton: UIButton {
+final class KeepSwipingButton: UIButton {
+    // MARK: - Override function
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
