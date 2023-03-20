@@ -5,8 +5,8 @@
 //  Created by Иван Худяков on 05.03.2023.
 //
 
-import UIKit
 import JGProgressHUD
+import UIKit
 
 // MARK: - SettingsControllerDelegate
 protocol SettingsControllerDelegate: AnyObject {
@@ -51,7 +51,7 @@ final class SettingsController: UITableViewController {
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Saving Your Data"
         hud.show(in: view)
-        Service.saveUserData(user: user) { error in
+        Service.saveUserData(user: user) { _ in
             self.delegate?.settingsController(self, wantsToUpdate: self.user)
         }
     }
@@ -82,7 +82,6 @@ final class SettingsController: UITableViewController {
                                                            action: #selector(handleCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
                                                             target: self,
-                                    
                                                             action: #selector(handleDone))
         tableView.separatorStyle = .none
         tableView.backgroundColor = .systemGroupedBackground
@@ -105,7 +104,7 @@ final class SettingsController: UITableViewController {
 // MARK: - SettingsHeaderDelegate
 extension SettingsController: SettingsHeaderDelegate {
     func settingsHeader(_ header: SettingsHeader, didSelect index: Int) {
-        self.imageIndex = index
+        imageIndex = index
         present(imagePicker, animated: true)
     }
 }
@@ -113,7 +112,7 @@ extension SettingsController: SettingsHeaderDelegate {
 // MARK: - UIImagePickerControllerDelegate
 extension SettingsController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
         uploadImage(image: selectedImage)
         setHeaderImage(selectedImage)
@@ -126,6 +125,7 @@ extension SettingsController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         SettingsSections.allCases.count
     }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -184,6 +184,7 @@ extension SettingsController: SettingsCellDelegate {
         }
     }
 }
+
 // MARK: - SettingsFooterDelegate
 extension SettingsController: SettingsFooterDelegate {
     func handleLogout() {

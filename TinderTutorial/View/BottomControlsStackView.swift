@@ -30,9 +30,9 @@ final class BottomControlsStackView: UIStackView {
         distribution = .fillEqually
         
         refreshButton.setImage(UIImage(named: "refresh_circle")?
-            .withRenderingMode(.alwaysOriginal),for: .normal)
+            .withRenderingMode(.alwaysOriginal), for: .normal)
         dislikeButton.setImage(UIImage(named: "dismiss_circle")?
-            .withRenderingMode(.alwaysOriginal),for: .normal)
+            .withRenderingMode(.alwaysOriginal), for: .normal)
         superLikeButton.setImage(UIImage(named: "super_like_circle")?.withRenderingMode(.alwaysOriginal),
                                  for: .normal)
         likeButton.setImage(UIImage(named: "like_circle")?
@@ -45,8 +45,8 @@ final class BottomControlsStackView: UIStackView {
                                 for: .touchUpInside)
         
         likeButton.addTarget(self,
-                                action: #selector(handleLike),
-                                for: .touchUpInside)
+                             action: #selector(handleLike),
+                             for: .touchUpInside)
         
         dislikeButton.addTarget(self,
                                 action: #selector(handleDislike),

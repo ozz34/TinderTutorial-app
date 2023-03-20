@@ -48,8 +48,8 @@ final class HomeNavigationStackView: UIStackView {
                                  for: .touchUpInside)
         
         messageButton.addTarget(self,
-                                 action: #selector(handleShowMessages),
-                                 for: .touchUpInside)
+                                action: #selector(handleShowMessages),
+                                for: .touchUpInside)
     }
     
     required init(coder: NSCoder) {

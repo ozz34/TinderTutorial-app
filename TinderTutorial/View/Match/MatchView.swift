@@ -26,7 +26,7 @@ final class MatchView: UIView {
     }()
     
     private let descriptionLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20)
@@ -80,12 +80,13 @@ final class MatchView: UIView {
     private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     lazy var views = [
-    matchImageView,
-    descriptionLabel,
-    currentUserImageView,
-    matchedUserImageView,
-    sendMessageButton,
-    keepSwipingButton]
+        matchImageView,
+        descriptionLabel,
+        currentUserImageView,
+        matchedUserImageView,
+        sendMessageButton,
+        keepSwipingButton
+    ]
     
     // MARK: - Lifecycle
     init(viewModel: MatchViewViewModel) {
@@ -101,6 +102,7 @@ final class MatchView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     // MARK: - Actions
     @objc func didTapSendMessage() {
         delegate?.matchView(self, wantsToSendMessageTo: viewModel.matchedUser)
@@ -166,7 +168,6 @@ final class MatchView: UIView {
         matchImageView.anchor(bottom: descriptionLabel.topAnchor, paddingBottom: 16)
         matchImageView.centerX(inView: self)
         matchImageView.setDimensions(height: 80, width: 300)
-    
     }
     
     private func configureAnimations() {
@@ -177,8 +178,8 @@ final class MatchView: UIView {
         currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle).concatenating(CGAffineTransform(translationX: 200, y: 0))
         matchedUserImageView.transform = CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(translationX: -200, y: 0))
         
-        self.sendMessageButton.transform = CGAffineTransform(translationX: -500, y: 0)
-        self.keepSwipingButton.transform = CGAffineTransform(translationX: 500, y: 0)
+        sendMessageButton.transform = CGAffineTransform(translationX: -500, y: 0)
+        keepSwipingButton.transform = CGAffineTransform(translationX: 500, y: 0)
         
         UIView.animateKeyframes(withDuration: 1.3,
                                 delay: 0,

@@ -88,14 +88,14 @@ final class CardView: UIView {
     }
     
     override func layoutSubviews() {
-        gradientLayer.frame = self.frame
+        gradientLayer.frame = frame
     }
     
     // MARK: - Actions
     @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
-            superview?.subviews.forEach({ $0.layer.removeAllAnimations() })
+            superview?.subviews.forEach { $0.layer.removeAllAnimations() }
         case .changed:
             panCard(sender: sender)
         case .ended:
@@ -107,7 +107,7 @@ final class CardView: UIView {
     
     @objc func handleChangePhoto(sender: UITapGestureRecognizer) {
         let location = sender.location(in: nil).x
-        let shouldNextPhoto = location > self.frame.width / 2
+        let shouldNextPhoto = location > frame.width / 2
         if shouldNextPhoto {
             viewModel.showNextPhoto()
         } else {
@@ -128,7 +128,7 @@ final class CardView: UIView {
         let degrees: CGFloat = translation.x / 20
         let angle = degrees * .pi / 180
         let rotationTranform = CGAffineTransform(rotationAngle: angle)
-        self.transform = rotationTranform.translatedBy(x: translation.x, y: translation.y)
+        transform = rotationTranform.translatedBy(x: translation.x, y: translation.y)
     }
     
     private func resetCardPosition(sender: UIPanGestureRecognizer) {
@@ -140,14 +140,14 @@ final class CardView: UIView {
                        usingSpringWithDamping: 0.6,
                        initialSpringVelocity: 0.1,
                        options: .curveEaseOut, animations: {
-            if shouldDismissCard {
-                let xTranslation = CGFloat(direction.rawValue) * 1000
-                let offScreenTransform = self.transform.translatedBy(x: xTranslation, y: 0)
-                self.transform = offScreenTransform
-            } else {
-                self.transform = .identity
-            }
-        }) { _ in
+                           if shouldDismissCard {
+                               let xTranslation = CGFloat(direction.rawValue) * 1000
+                               let offScreenTransform = self.transform.translatedBy(x: xTranslation, y: 0)
+                               self.transform = offScreenTransform
+                           } else {
+                               self.transform = .identity
+                           }
+                       }) { _ in
             if shouldDismissCard {
                 let didLike = direction == .right
                 self.delegate?.cardView(self, didLikeUser: didLike)

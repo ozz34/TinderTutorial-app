@@ -19,6 +19,7 @@ final class MatchHeader: UICollectionReusableView {
             collectionView.reloadData()
         }
     }
+
     weak var delegate: MatchHeaderDelegate?
    
     private let identifier = "MatchCell"
@@ -69,6 +70,7 @@ final class MatchHeader: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 // MARK: - UICollectionViewDataSource
 extension MatchHeader: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,

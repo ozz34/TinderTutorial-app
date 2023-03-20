@@ -26,10 +26,10 @@ struct RegistrationViewModel {
     var email: String?
     var fullName: String?
     var password: String?
-    
+
     var formIsValid: Bool {
         email?.isEmpty == false &&
-        fullName?.isEmpty == false &&
-        password?.isEmpty == false
+            fullName?.isEmpty == false &&
+            password?.isEmpty == false
     }
 }

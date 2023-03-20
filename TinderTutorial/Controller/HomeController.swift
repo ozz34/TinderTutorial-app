@@ -5,8 +5,8 @@
 //  Created by Иван Худяков on 28.02.2023.
 //
 
-import UIKit
 import Firebase
+import UIKit
 
 final class HomeController: UIViewController {
     // MARK: - Properties
@@ -22,8 +22,9 @@ final class HomeController: UIViewController {
             configureCards()
         }
     }
+
     private let deckView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
         return view
@@ -57,9 +58,7 @@ final class HomeController: UIViewController {
     private func checkIsUserIsLoggedIn() {
         if Auth.auth().currentUser == nil {
             presentLoginController()
-        } else {
-
-        }
+        } else { }
     }
     
     private func logout() {
@@ -166,7 +165,7 @@ final class HomeController: UIViewController {
 // MARK: - HomeNavigationStackViewDelegate
 extension HomeController: HomeNavigationStackViewDelegate {
     func showSettings() {
-        guard let user = self.user else { return }
+        guard let user = user else { return }
         let controller = SettingsController(user: user)
         controller.delegate = self
         let nav = UINavigationController(rootViewController: controller)
@@ -182,6 +181,7 @@ extension HomeController: HomeNavigationStackViewDelegate {
         present(nav, animated: true)
     }
 }
+
 // MARK: - SettingsControllerDelegate
 extension HomeController: SettingsControllerDelegate {
     func settingsControllerWantsToLogout(_ controller: SettingsController) {
@@ -194,15 +194,16 @@ extension HomeController: SettingsControllerDelegate {
         self.user = user
     }
 }
+
 // MARK: - CardViewDelegate
 extension HomeController: CardViewDelegate {
     func cardView(_ view: CardView, didLikeUser: Bool) {
         view.removeFromSuperview()
-        self.cardViews.removeLast()
+        cardViews.removeLast()
         
         guard let user = topCardView?.viewModel.user else { return }
         saveSwipeAndCheckForMatch(forUser: user, didLike: didLikeUser)
-        self.topCardView = cardViews.last
+        topCardView = cardViews.last
     }
     
     func cardView(_ view: CardView, wantsToShowProfileFor user: User) {
@@ -228,7 +229,7 @@ extension HomeController: BottomControlsStackViewDelegate {
     }
     
     func handleRefresh() {
-        guard let user = self.user else { return }
+        guard let user = user else { return }
         activity.startAnimating()
 
         Service.fetchUsers(forCurrentUser: user) { [weak self] users in
@@ -265,6 +266,7 @@ extension HomeController: AuthenticationDelegate {
         fetchCurrentUserAndCards()
     }
 }
+
 // MARK: - MatchViewDelegate
 extension HomeController: MatchViewDelegate {
     func matchView(_ view: MatchView, wantsToSendMessageTo user: User) {

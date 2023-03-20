@@ -5,8 +5,8 @@
 //  Created by Иван Худяков on 01.03.2023.
 //
 
-import UIKit
 import JGProgressHUD
+import UIKit
 
 final class RegistrationController: UIViewController {
     // MARK: - Properties
@@ -153,11 +153,11 @@ final class RegistrationController: UIViewController {
                                  action: #selector(textDidChange),
                                  for: .editingChanged)
         fullNameTextField.addTarget(self,
-                                 action: #selector(textDidChange),
-                                 for: .editingChanged)
+                                    action: #selector(textDidChange),
+                                    for: .editingChanged)
         passwordTextField.addTarget(self,
-                                 action: #selector(textDidChange),
-                                 for: .editingChanged)
+                                    action: #selector(textDidChange),
+                                    for: .editingChanged)
     }
     
     private func checkFormStatus() {
@@ -173,8 +173,8 @@ final class RegistrationController: UIViewController {
 
 // MARK: - UIImagePickerControllerDelegate
 extension RegistrationController: UIImagePickerControllerDelegate,
-                                  UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
         profileImage = image
         selectPhotoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)

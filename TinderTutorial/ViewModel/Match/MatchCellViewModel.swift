@@ -12,11 +12,11 @@ struct MatchCellViewModel {
     let nameText: String
     var profileImageUrl: URL?
     let uid: String
-    
+
     // MARK: - Lifecycle
     init(match: Match) {
         nameText = match.name
-        self.profileImageUrl = URL(string: match.profileImageUrl)
+        profileImageUrl = URL(string: match.profileImageUrl)
         uid = match.uid
     }
 }

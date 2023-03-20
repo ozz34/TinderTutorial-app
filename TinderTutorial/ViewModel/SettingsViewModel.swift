@@ -36,12 +36,15 @@ struct SettingsViewModel {
     var shouldHideInputField: Bool {
         section == .ageRange
     }
+
     var shouldHideSlider: Bool {
         section != .ageRange
     }
+
     var minAgeSliderValue: Float {
         Float(user.minSeekingAge)
     }
+
     var maxAgeSliderValue: Float {
         Float(user.maxSeekingAge)
     }
@@ -62,7 +65,7 @@ struct SettingsViewModel {
         case .bio:
             value = user.bio
         case .ageRange:
-                break
+            break
         }
     }
     

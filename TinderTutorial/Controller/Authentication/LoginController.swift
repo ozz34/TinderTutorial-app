@@ -5,8 +5,8 @@
 //  Created by Иван Худяков on 01.03.2023.
 //
 
-import UIKit
 import JGProgressHUD
+import UIKit
 
 // MARK: - AuthenticationDelegate
 protocol AuthenticationDelegate: AnyObject {
@@ -20,7 +20,7 @@ final class LoginController: UIViewController {
     private var viewModel = LoginViewModel()
 
     private let iconImageView: UIImageView = {
-       let iv = UIImageView()
+        let iv = UIImageView()
         iv.image = UIImage(named: "app_icon")?.withRenderingMode(.alwaysTemplate)
         iv.tintColor = .white
         return iv
@@ -71,7 +71,7 @@ final class LoginController: UIViewController {
         let hud = JGProgressHUD(style: .dark)
         hud.show(in: view)
         
-        AuthService.logUserIn(withEmail: email, password: password) { [weak self] (result, error) in
+        AuthService.logUserIn(withEmail: email, password: password) { [weak self] _, error in
             if let error {
                 print("Debug: Error logging user in \(error.localizedDescription)")
                 hud.dismiss()
@@ -102,7 +102,7 @@ final class LoginController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
         
-        self.configureGradientLayer()
+        configureGradientLayer()
         
         view.addSubview(iconImageView)
         iconImageView.centerX(inView: view)
@@ -110,8 +110,8 @@ final class LoginController: UIViewController {
         iconImageView.setDimensions(height: 100, width: 100)
         
         let stack = UIStackView(arrangedSubviews: [emailTextField,
-                                                  passwordTextField,
-                                                  authButton])
+                                                   passwordTextField,
+                                                   authButton])
         stack.axis = .vertical
         stack.spacing = 16
         
@@ -136,8 +136,8 @@ final class LoginController: UIViewController {
                                  action: #selector(textDidChange),
                                  for: .editingChanged)
         passwordTextField.addTarget(self,
-                                 action: #selector(textDidChange),
-                                 for: .editingChanged)
+                                    action: #selector(textDidChange),
+                                    for: .editingChanged)
     }
     
     private func checkFormStatus() {

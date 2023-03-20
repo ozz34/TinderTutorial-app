@@ -143,8 +143,8 @@ final class ProfileController: UIViewController {
                              paddingRight: 16)
         
         let infoStack = UIStackView(arrangedSubviews: [infoLabel,
-                                                      professionLabel,
-                                                      bioLabel])
+                                                       professionLabel,
+                                                       bioLabel])
         infoStack.axis = .vertical
         infoStack.spacing = 4
         view.addSubview(infoStack)
@@ -156,9 +156,9 @@ final class ProfileController: UIViewController {
                          paddingRight: 12)
         view.addSubview(blurView)
         blurView.anchor(top: view.topAnchor,
-                         left: view.leftAnchor,
+                        left: view.leftAnchor,
                         bottom: view.safeAreaLayoutGuide.topAnchor,
-                         right: view.rightAnchor)
+                        right: view.rightAnchor)
         
         configureBottomControls()
         configureBarStackView()
@@ -177,15 +177,15 @@ final class ProfileController: UIViewController {
     
     private func configureBottomControls() {
         let stack = UIStackView(arrangedSubviews: [dislikeButton,
-                                                  superlikeButton,
-                                                  likeButton])
+                                                   superlikeButton,
+                                                   likeButton])
         stack.distribution = .fillEqually
         view.addSubview(stack)
         stack.spacing = -32
         stack.setDimensions(height: 80, width: 300)
         stack.centerX(inView: view)
         stack.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                    paddingBottom: 32)
+                     paddingBottom: 32)
     }
     
     private func createButton(withImage image: UIImage) -> UIButton {
@@ -202,6 +202,7 @@ final class ProfileController: UIViewController {
         bioLabel.text = viewModel.bio
     }
 }
+
 // MARK: - UICollectionViewDataSource
 extension ProfileController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
@@ -210,7 +211,8 @@ extension ProfileController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? ProfileCell else { return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+                         as? ProfileCell else { return UICollectionViewCell() }
         cell.imageView.sd_setImage(with: viewModel.imageURLs[indexPath.row])
         return cell
     }

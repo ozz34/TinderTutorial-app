@@ -18,9 +18,11 @@ struct ProfileViewModel {
     var imageCount: Int {
         user.imageURLs.count
     }
+
     var imageURLs: [URL?] {
-        user.imageURLs.map {URL(string: $0)}
+        user.imageURLs.map { URL(string: $0) }
     }
+
     // MARK: - Lifecycle
     init(user: User) {
         self.user = user

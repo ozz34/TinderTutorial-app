@@ -42,7 +42,7 @@ final class MatchCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         let stack = UIStackView(arrangedSubviews: [profileImageView,
-                                                  userNameLabel])
+                                                   userNameLabel])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.alignment = .center

@@ -19,18 +19,19 @@ struct CardViewModel {
     var index: Int {
         imageIndex
     }
+
     // MARK: - Lifecycle
     init(user: User) {
         self.user = user
-        self.imageURLs = user.imageURLs
+        imageURLs = user.imageURLs
         
         let attributedText = NSMutableAttributedString(string: user.name,
-                                                       attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy),.foregroundColor: UIColor.white])
+                                                       attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy), .foregroundColor: UIColor.white])
         attributedText.append(NSAttributedString(string: "  \(user.age)", attributes:
-                                                    [.font: UIFont.systemFont(ofSize: 24),.foregroundColor: UIColor.white]))
+            [.font: UIFont.systemFont(ofSize: 24), .foregroundColor: UIColor.white]))
         
         userInfoText = attributedText
-        imageUrl = URL(string: self.imageURLs[0])
+        imageUrl = URL(string: imageURLs[0])
     }
     
     // MARK: - Helpers

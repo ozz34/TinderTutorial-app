@@ -56,10 +56,9 @@ final class MessagesController: UITableViewController {
         headerView.delegate = self
     }
 
-    
     private func configureNavigationBar() {
         let leftButton = UIImageView()
-        leftButton.setDimensions(height: 28,width: 28)
+        leftButton.setDimensions(height: 28, width: 28)
         leftButton.isUserInteractionEnabled = true
         leftButton.image = UIImage(named: "app_icon")?
             .withRenderingMode(.alwaysTemplate)
@@ -72,7 +71,7 @@ final class MessagesController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
         
         let icon = UIImageView(image: UIImage(named: "top_right_messages")?
-                               .withRenderingMode(.alwaysTemplate))
+            .withRenderingMode(.alwaysTemplate))
         icon.tintColor = .systemPink
         navigationItem.titleView = icon
     }
